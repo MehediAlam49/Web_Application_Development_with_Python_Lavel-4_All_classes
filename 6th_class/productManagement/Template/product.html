@@ -1,0 +1,40 @@
+{% extends "master.html" %}
+
+{% block body %}
+<section class="hero">
+    <h2>Welcome to E-Shop</h2>
+    <p>Your one-stop shop for all your product needs.</p>
+  </section>
+
+  <div class="container">
+    <h3>Featured Products</h3>
+    <p>Explore our collection of top-rated and trending products curated just for you.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Product Details</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Created Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in data %}
+        <tr>
+            <td>{{ product.product_name }}</td>
+            <td>{{ product.product_details }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.created_date }}</td>
+            
+          </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+  </div>
+{% endblock body %}
+
+

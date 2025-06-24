@@ -1,0 +1,26 @@
+<nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex items-center justify-between">
+      <div class="text-2xl font-bold text-green-600">🍽️ RecipeBook</div>
+
+      <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <li><a href="{% url 'home' %}" class="hover:text-green-600 transition">Home</a></li>
+        <li><a href="{% url 'addRecipe' %}" class="hover:text-green-600 transition">Add Recipe</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menuBtn" class="text-gray-700 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-white">
+      <a href="{% url 'home' %}" class="block text-gray-700 hover:text-green-600">Home</a>
+      <a href="{% url 'addRecipe' %}" class="block text-gray-700 hover:text-green-600">Add Recipe</a>
+    </div>
+  </nav>

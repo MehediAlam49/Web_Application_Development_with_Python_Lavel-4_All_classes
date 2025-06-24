@@ -1,0 +1,89 @@
+{% extends 'master.html' %}
+
+
+{% block body %}
+    <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8fafc;
+    padding: 40px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #222;
+  }
+
+  table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  thead {
+    background-color: #3b82f6; /* nice blue */
+    color: white;
+  }
+
+  th, td {
+    padding: 15px 22px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  tbody tr:hover {
+    background-color: #e0e7ff;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+</style>
+
+  <h2>Product List</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Product Details</th>
+        <th>Price</th>
+        <th>Quality</th>
+        <th>Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Wireless Mouse</td>
+        <td>Ergonomic, 2.4GHz wireless</td>
+        <td>$25.99</td>
+        <td>High</td>
+        <td>2025-04-12</td>
+      </tr>
+      <tr>
+        <td>Bluetooth Speaker</td>
+        <td>Portable, 10 hours battery life</td>
+        <td>$45.00</td>
+        <td>Medium</td>
+        <td>2025-03-25</td>
+      </tr>
+      <tr>
+        <td>USB-C Hub</td>
+        <td>7-in-1 with HDMI, USB3.0</td>
+        <td>$39.99</td>
+        <td>High</td>
+        <td>2025-05-01</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock body %}
+    
+
+
+

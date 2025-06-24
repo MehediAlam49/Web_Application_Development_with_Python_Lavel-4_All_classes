@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0077b6;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  color: #ffcb05;
+}
+
+  </style>
+</head>
+<body>
+
+  {% include "navber.html" %}
+
+ {% block body %}
+ 
+ {% endblock body %}
+
+
+
+</body>
+</html>

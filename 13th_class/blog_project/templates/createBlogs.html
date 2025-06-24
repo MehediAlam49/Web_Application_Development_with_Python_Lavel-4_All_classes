@@ -1,0 +1,133 @@
+{% extends 'master.html' %}
+
+{% block body %}
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f3f4f6;
+      
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      max-width: 600px;
+      width: 100%;
+      {% comment %} margin-top: 50px; {% endcomment %}
+      margin: 0 auto;
+    }
+
+    .form-container h2 {
+      margin-bottom: 25px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      color: #999;
+      pointer-events: none;
+      transition: 0.3s;
+      background: #fff;
+      padding: 0 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: transparent;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #007BFF;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:focus + label,
+    .form-group textarea:not(:placeholder-shown) + label,
+    .form-group select:focus + label {
+      top: -10px;
+      font-size: 12px;
+      color: #007BFF;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056cc;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+
+  <div class="form-container">
+    <h2>Create New Blog</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+      <div class="form-group">
+        <input type="text" id="title" name="title" required placeholder=" " />
+        <label for="title">Content Title</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="author" name="author" required placeholder=" " />
+        <label for="author">Author Name</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" required placeholder=" " />
+        <label for="email">Author Email</label>
+      </div>
+      
+      <div class="form-group">
+        <textarea id="description" name="description" required placeholder=" "></textarea>
+        <label for="description">Description</label>
+      </div>
+      <button type="submit">Publish Blog</button>
+    </form>
+  </div>
+{% endblock body %}

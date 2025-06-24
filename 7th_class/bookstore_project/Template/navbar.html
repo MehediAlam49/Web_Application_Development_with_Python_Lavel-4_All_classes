@@ -1,0 +1,96 @@
+
+<style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+
+    /* Navigation bar */
+    .navbar {
+      background-color: #1976d2;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      color: white;
+      font-size: 24px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links li {
+      display: inline;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: #1565c0;
+    }
+
+    /* Main content */
+    .home-container {
+      padding: 60px 30px;
+      text-align: center;
+    }
+
+    .home-container h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #2e3c48;
+    }
+
+    .home-container p {
+      font-size: 18px;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+<!-- Navigation Bar -->
+  <nav class="navbar">
+    <h1>Library System</h1>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'books' %}">Books</a></li>
+      <li><a href="{% url 'user' %}">User</a></li>
+      <li><a href="{% url 'addStudent' %}">add student</a></li>
+      <li><a href="{% url 'studentList' %}">Student List</a></li>
+    </ul>
+  </nav>

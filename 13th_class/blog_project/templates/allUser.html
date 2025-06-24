@@ -1,0 +1,95 @@
+{% extends 'master.html' %}
+
+{% block body %}
+    <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .table-container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      overflow-x: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    thead {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 15px 20px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #eee;
+      transition: background 0.3s;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f9ff;
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    td {
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        padding: 12px 15px;
+      }
+    }
+  </style>
+
+
+  <h2>All Users Posts</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+        </tr>
+      </thead>
+      <tbody>
+       
+       {% for user in user %}
+         <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.number }}</td>
+        </tr>
+       {% endfor %}
+        
+        
+      </tbody>
+    </table>
+  </div>
+
+{% endblock body %}
+    

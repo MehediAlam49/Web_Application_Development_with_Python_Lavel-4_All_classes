@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+
+
+
+{% block body %}
+  <section class="hero">
+    <h2>Welcome to E-Shop</h2>
+    <p>Your one-stop shop for all your product needs.</p>
+  </section>
+
+  
+
+  <div class="container">
+    <h3>Customer List</h3>
+    <p>Here's a list of our valued customers.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for customer in data %}
+        <tr>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.contact }}</td>
+            <td>{{ customer.address }}</td>
+          </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+  </div>
+  {% endblock body %}

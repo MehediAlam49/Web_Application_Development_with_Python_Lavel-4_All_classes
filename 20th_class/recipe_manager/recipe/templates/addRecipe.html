@@ -1,0 +1,70 @@
+{% extends "master.html" %}
+{% block body %}
+ <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .form-container {
+      max-width: 800px;
+      margin: 50px auto;
+    }
+    .card {
+      border: none;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+
+  <div class="container form-container">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">➕ Add New Recipe</h4>
+    </div>
+    <div class="card-body">
+      <!-- Backend Form POST -->
+      <form action="" method="POST" enctype="multipart/form-data">\
+        {% csrf_token %}
+        
+        <!-- Image Upload -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Recipe Image</label>
+          <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+        </div>
+
+        <!-- Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Recipe Title</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="e.g., Chicken Alfredo" required>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" name="description" rows="3" placeholder="Short description..." required></textarea>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="mb-3">
+          <label for="ingredients" class="form-label">Ingredients</label>
+          <textarea class="form-control" id="ingredients" name="ingredients" rows="3" placeholder="List ingredients..." required></textarea>
+        </div>
+
+        <!-- Instructions -->
+        <div class="mb-3">
+          <label for="instructions" class="form-label">Instructions</label>
+          <textarea class="form-control" id="instructions" name="instructions" rows="4" placeholder="Cooking steps..." required></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success btn-lg">Submit Recipe</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock body %}
+
+

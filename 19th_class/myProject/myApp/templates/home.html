@@ -1,0 +1,74 @@
+{% extends 'master.html' %}
+{% block body %}
+  <style>
+    .body {
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+    }
+    
+    .info-card {
+      max-width: 400px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: 0.3s ease-in-out;
+    }
+    
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .info-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    .card-body {
+      padding: 1.5rem;
+    }
+    
+    .info-card h5 {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .info-card p {
+      margin: 0;
+      color: #6c757d;
+    }
+    
+    .info-card .phone {
+      margin: 15px 0;
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .info-card .btn-group .btn {
+      font-size: 0.875rem;
+    }
+  </style>
+
+  {% for info in info %}
+  <div class="body">
+    <div class="card info-card text-center">
+      <img src="{{info.image}}" alt="Profile Image" />
+      <div class="card-body">
+        <h5 class="card-title">{{info.name}}</h5>
+        <p class="card-text">{{info.about}}</p>
+        <p class="phone">📞 {{info.phone}}</p>
+        <div class="btn-group" role="group">
+          <a href="{% url "update" info.id %}"  type="button" class="btn btn-outline-primary">Edit</a>
+          <a href="{% url "view" info.id %}"  type="button" class="btn btn-outline-success">View</a>
+          <a href="{% url "delete" info.id %}"  type="button" class="btn btn-outline-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}

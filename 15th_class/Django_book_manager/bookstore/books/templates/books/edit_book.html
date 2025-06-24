@@ -1,0 +1,133 @@
+{% extends 'master.html' %}
+
+
+{% block body %}
+      <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f8;
+      
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .form-actions button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .form-actions .save-btn {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .form-actions .save-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .form-actions .cancel-btn {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .form-actions .cancel-btn:hover {
+      background-color: #c2c2c2;
+    }
+  </style>
+
+
+  <div class="form-container">
+    <h2>Edit Book</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" value="{{ book.title }}" placeholder="Enter book title">
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author" value="{{ book.author }}" placeholder="Enter author name">
+      </div>
+
+      <div class="form-group">
+        <label for="category">Book Category</label>
+        <input type="text" id="category" name="category" value="{{ book.category }}" placeholder="Enter category name">
+      </div>
+
+      <div class="form-group">
+        <label for="publish-date">Publish Date</label>
+        <input type="date" id="publish-date" name="publish_date" value="{{ book.publish_date|date:'Y-m-d' }}">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" placeholder="Write a short description...">v"{{ book.description }}"</textarea>
+      </div>
+      <img src="/{{book.cover_photo}}" alt="photo" width="100px">
+      <div class="form-group">
+        <label for="file">File</label>
+        <input type="file" id="cover_photo" name="cover_photo">
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="save-btn">Update</button>
+      </div>
+    </form>
+  </div>
+{% endblock body %}
+    

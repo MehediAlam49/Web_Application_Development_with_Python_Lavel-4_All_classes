@@ -1,0 +1,110 @@
+{% extends "master.html" %}
+  
+  {% block body %}
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f8;
+      margin: 0;
+      padding: 0;
+      
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      margin-top: 3em;
+    }
+
+    .form-container h2 {
+      margin-bottom: 1.5rem;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #fafafa;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-group input[type="date"] {
+      background-color: #fff;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+  
+  <form class="form-container">
+    <h2>Add New Product</h2>
+
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" name="product_name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productDetails">Product Details</label>
+      <textarea id="productDetails" name="product_details" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price ($)</label>
+      <input type="number" step="0.01" id="price" name="price" required>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" name="quantity" required>
+    </div>
+
+    <div class="form-group">
+      <label for="createdDate">Created Date</label>
+      <input type="date" id="createdDate" name="created_date" required>
+    </div>
+
+    <button type="submit" class="submit-btn">Add Product</button>
+  </form>
+  {% endblock body %}
+

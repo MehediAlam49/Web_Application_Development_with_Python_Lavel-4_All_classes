@@ -1,0 +1,57 @@
+{% extends "master.html" %}
+{% block body %}
+<style>
+    .recipe-img {
+      width: 100px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .table td, .table th {
+      vertical-align: middle;
+    }
+  </style>
+  
+<div class="container mt-5">
+  <h2 class="mb-4">🍽️ Modern Recipe List</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Ingredients</th>
+          <th scope="col">Instructions</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Recipe Row -->
+        {% for recipe in recipe %}
+        <tr>
+          <td>
+            <img src="{{recipe.image.url}}" alt="Recipe" class="recipe-img" width="100px">
+          </td>
+          <td><strong>{{recipe.title}}</strong></td>
+          <td>{{recipe.description}}</td>
+          <td>{{recipe.ingredients}}</td>
+          <td>
+           {{recipe.instructions}}
+          </td>
+          <td>
+            <a href="{% url "viewRecipe" recipe.id %}" class="btn btn-primary btn-sm mb-1">View</a>
+            <a href="{% url "editRecipe" recipe.id %}" class="btn btn-primary btn-sm mb-1">Edit</a>
+            <a href="{% url "deleteRecipe" recipe.id %}" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+
+        <!-- Add more recipes as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock body %}
+
+</html>

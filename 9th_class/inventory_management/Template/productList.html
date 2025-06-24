@@ -1,0 +1,151 @@
+{% extends "master.html" %}
+{% block body %}
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+    }
+
+    th,
+    td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .status-in-stock {
+        color: green;
+        font-weight: bold;
+    }
+
+    .status-out-of-stock {
+        color: red;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .edit_btn {
+        background-color: blueviolet;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+
+    .delete_btn {
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 10px;
+
+    }
+
+    .view_btn {
+        background-color: green;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 10px;
+
+    }
+
+    @media (max-width: 768px) {
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+            display: block;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+
+        td {
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+    }
+</style>
+
+<div class="container">
+    <h2>Product List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in productData %}
+            <tr>
+                <td data-label="Product Name">{{ product.product_name}}</td>
+                <td data-label="Category">{{ product.category}}</td>
+                <td data-label="Quantity">{{ product.quantity}}</td>
+                <td data-label="Price">{{ product.price}}</td>
+                <td data-label="Status"><span class="status-in-stock">{{ product.status}}</span></td>
+                <td>
+                    <a href="{% url 'editProduct' product.id %}" class="edit_btn">Edit</a>
+                    <a href="{% url 'deleteProduct' product.id %}" class="delete_btn">Delete</a>
+                    <a href="{% url 'viewProduct' product.id %}" class="view_btn">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}

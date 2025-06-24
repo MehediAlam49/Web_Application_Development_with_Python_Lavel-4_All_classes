@@ -1,0 +1,96 @@
+{% extends 'master.html' %}
+{% block body %}
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-top: 2em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    thead {
+      background-color: #1976d2;
+      color: white;
+    }
+
+    th, td {
+      padding: 14px 20px;
+      text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #e3f2fd;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        display: none;
+      }
+
+      td {
+        position: relative;
+        padding-left: 50%;
+        border-bottom: 1px solid #eee;
+      }
+
+      td::before {
+        position: absolute;
+        left: 20px;
+        top: 14px;
+        font-weight: bold;
+        color: #555;
+        content: attr(data-label);
+      }
+    }
+  </style>
+
+  <h2>User Directory</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for userl in userData %}
+        <tr>
+          <td>{{ userl.name }}</td>
+          <td>{{ userl.email }}</td>
+          <td>{{ userl.address }}</td>
+          <td>{{ userl.phone }}</td>
+        </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+{% endblock body %}
+  
+
+
+

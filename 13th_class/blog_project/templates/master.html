@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Stylish Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9em;
+      background: #fff;
+      margin-top: 40px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+ {% include 'navbar.html' %}
+
+ 
+ {% block body %}
+    
+ {% endblock body %}
+    
+
+  <footer>
+    &copy; 2025 MyBlog. All rights reserved.
+  </footer>
+
+</body>
+</html>

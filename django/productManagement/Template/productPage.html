@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      padding: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    thead {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    th {
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Product List</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Product Details</th>
+        <th>Price ($)</th>
+        <th>Quantity</th>
+        <th>Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in data %}
+      <tr>
+        <td>{{ a.product_name }}</td>
+        <td>{{ a.product_details }}</td>
+        <td>{{ a.price }}</td>
+        <td>{{ a.quantity }}</td>
+        <td>{{ a.created_date }}</td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+</body>
+</html>

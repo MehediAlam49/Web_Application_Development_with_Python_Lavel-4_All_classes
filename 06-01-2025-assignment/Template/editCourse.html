@@ -1,0 +1,122 @@
+{% extends 'master.html' %}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration Form</title>
+  <style>
+   
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #0073e6;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    input[type="radio"] {
+      width: auto;
+      margin-right: 5px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    button {
+      background-color: #0073e6;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #005bb5;
+    }
+
+    .form-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Course Form</h2>
+    <a href="{% url 'CourseList' %}">Student List</a>
+
+    <form action=" "method="POST">
+        {% csrf_token %}
+      <div class="form-group">
+        <label for="CourseName">Course Name</label>
+        <input type="text" id="CourseName" value="{{data.Course_Name}}"  name="CourseName" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Course_Number">Course Number</label>
+        <input type="number" id="Course_Number" value="{{data.Course_Number}}" name="Course_Number" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Course_Credit">Course Credit</label>
+        <input type="number" id="Course_Credit" value="{{data.Course_Credit}}" name="Course_Credit" required />
+      </div>
+
+      <div class="form-group">
+       <label for="Course_Duration">Course Duration</label>
+        <input type="number" id="Course_Duration" value="{{data.Course_Duration}}" name="Course_Duration" min="1" max="100" required />
+      </div>
+
+      
+    <div>
+      <button type="submit">Update</button>
+      <p class="form-note">All fields are required.</p>
+    </form>
+  </div>
+</body>
+</html>
+
+</body>
+</html>
+
+
+
+{% endblock body %}

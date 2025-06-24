@@ -1,0 +1,52 @@
+{% extends 'master.html' %}
+{% block body %}
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .recipe-card {
+      max-width: 900px;
+      margin: 50px auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .recipe-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .card-body h3 {
+      font-weight: bold;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+
+  <div class="container">
+    <div class="card recipe-card">
+      <!-- Recipe Image -->
+      <img src="{{recipe.image.url}}" alt="Recipe" class="recipe-img">
+
+      <!-- Recipe Content -->
+      <div class="card-body">
+        <!-- Title -->
+        <h3 class="card-title">{{recipe.title}}</h3>
+
+        <!-- Description -->
+        <p class="card-text text-muted">{{recipe.description}}</p>
+
+        <!-- Ingredients -->
+        <h5 class="section-title">🧂 Ingredients</h5>
+        {{recipe.ingredients}}
+
+        <!-- Instructions -->
+        <h5 class="section-title">👨‍🍳 Instructions</h5>
+        {{recipe.instructions}}
+      </div>
+    </div>
+  </div>
+{% endblock %}

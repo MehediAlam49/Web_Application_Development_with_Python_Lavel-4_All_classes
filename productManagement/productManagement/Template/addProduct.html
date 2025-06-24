@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Add Product</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8fafc;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 400px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #2563eb;
+  }
+</style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Add Product</h2>
+    <form action="#" method="post">
+      <label for="product_name">Product Name</label>
+      <input type="text" id="product_name" name="product_name" required>
+
+      <label for="product_details">Product Details</label>
+      <textarea id="product_details" name="product_details" required></textarea>
+
+      <label for="price">Price ($)</label>
+      <input type="number" id="price" name="price" step="0.01" min="0" required>
+
+      <label for="quality">Quality</label>
+      <select id="quality" name="quality" required>
+        <option value="" disabled selected>Select quality</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+
+      <label for="created_date">Created Date</label>
+      <input type="date" id="created_date" name="created_date" required>
+
+      <input type="submit" value="Add Product">
+    </form>
+  </div>
+
+</body>
+</html>

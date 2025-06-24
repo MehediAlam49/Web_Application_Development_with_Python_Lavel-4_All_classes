@@ -1,0 +1,88 @@
+{% extends 'master.html' %}
+  
+  {% block title %}
+    Welcome | Home
+  {% endblock title %}
+    
+ 
+ {% block body %}
+ <style>
+  h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+  table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    thead tr {
+      background: #4a90e2;
+      color: white;
+      text-align: left;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    thead th {
+      padding: 15px 20px;
+    }
+
+    tbody tr {
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+      transition: transform 0.15s ease-in-out;
+      border-radius: 10px;
+    }
+
+    tbody tr:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    tbody td {
+      padding: 15px 20px;
+      vertical-align: middle;
+    }
+ </style>
+
+
+  <div id="homePage" class="container welcome">
+    <h2>Welcome!</h2>
+    <p>Plan your day and stay productive with your stylish to-do list.</p>
+  </div>
+
+  <h1>User List</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Full Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for user in userData %}
+        <tr>
+        <td data-label="Title">{{ user.fname }}</td>
+        <td data-label="Title">{{ user.lname }}</td>
+        <td data-label="Title">{{ user.full_name }}</td>
+        <td data-label="Title">{{ user.userName }}</td>
+      </tr>
+      {% endfor %}
+        
+      
+    </tbody>
+  </table>
+ {% endblock body %}
+    
+

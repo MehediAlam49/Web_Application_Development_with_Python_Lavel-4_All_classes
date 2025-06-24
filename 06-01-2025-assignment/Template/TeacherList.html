@@ -1,0 +1,85 @@
+{% extends 'master.html' %}
+
+{% block body %}
+
+
+<style>
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 12px 20px;
+    text-align: left;
+  }
+
+  thead {
+    background-color: #34495e;
+    color: #ecf0f1;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f2f6fc;
+  }
+
+  tbody tr:hover {
+    background-color: #d1e7fd;
+    cursor: pointer;
+  }
+
+ 
+</style>
+
+<body>
+
+<h2>Teacher List</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Teacher Name</th>
+    <th>Department</th>
+    <th>Email</th>
+    <th>Designation</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+{% for i in teacherList %}
+
+  <tr>
+    <td>{{i.Teacher_Name}}</td>
+    <td>{{i.Department_Name}}</td>
+    <td>{{i.Email}}</td>
+    <td>{{i.Designation}}</td>
+    <td class="actions">
+        <a href="{% url 'editTeacher' i.id %}">Edit</a>
+        <a href=" {% url 'deleteTeacher' i.id %}">Delete</a>
+        <a href="">View</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" style="text-align:center; padding: 20px; color: #888;">
+        No students found.
+      </td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+</body>
+
+{% endblock body %}

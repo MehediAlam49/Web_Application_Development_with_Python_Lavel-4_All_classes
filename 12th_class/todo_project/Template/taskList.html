@@ -1,0 +1,182 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    Task List
+{% endblock title %}
+
+{% block body %}
+    <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafb;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    thead tr {
+      background: #4a90e2;
+      color: white;
+      text-align: left;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    thead th {
+      padding: 15px 20px;
+    }
+
+    tbody tr {
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+      transition: transform 0.15s ease-in-out;
+      border-radius: 10px;
+    }
+
+    tbody tr:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    tbody td {
+      padding: 15px 20px;
+      vertical-align: middle;
+    }
+
+    .status {
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      font-size: 14px;
+      color: white;
+      user-select: none;
+    }
+
+    .status.pending {
+      background: #e67e22; /* orange */
+    }
+
+    .status.completed {
+      background: #27ae60; /* green */
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .actions button {
+      background: transparent;
+      border: 2px solid #4a90e2;
+      color: #4a90e2;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .actions button:hover {
+      background: #4a90e2;
+      color: white;
+      box-shadow: 0 5px 12px rgba(74,144,226,0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      table, thead, tbody, tr, th, td {
+        display: block;
+      }
+
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      tbody tr {
+        margin-bottom: 25px;
+        box-shadow: none;
+        border-radius: 8px;
+        background: #fff;
+        padding: 15px;
+      }
+
+      tbody td {
+        padding: 10px 15px;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+      }
+
+      tbody td::before {
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: 700;
+        text-align: left;
+        color: #555;
+        content: attr(data-label);
+      }
+
+      .actions {
+        justify-content: flex-end;
+      }
+    }
+  </style>
+
+  <h1>Task List</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for task in taskData %}
+        <tr>
+        <td data-label="Title">{{ task.title }}</td>
+        <td data-label="Title">{{ task.description }}</td>
+        <td data-label="Title">{{ task.status }}</td>
+        <td data-label="Title">{{ task.dueDate }}</td>
+        
+        <td data-label="Actions" class="actions">
+          <a href="{% url 'editTask' task.id %}">Edit</a>
+          <a href="{% url 'deleteTask' task.id %}">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+        
+      
+    </tbody>
+  </table>
+{% endblock body %}
+    
+
+ 

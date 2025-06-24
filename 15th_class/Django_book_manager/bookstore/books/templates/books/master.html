@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stylish Navbar</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f8;
+    }
+
+    /* Navbar container */
+    nav {
+      background-color: #007BFF;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      color: white;
+    }
+
+    /* Navbar brand/title */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      user-select: none;
+      margin-right: auto;
+    }
+
+    /* Menu */
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .navbar-menu li {
+      position: relative;
+    }
+
+    .navbar-menu a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 0;
+      transition: color 0.3s, border-bottom 0.3s;
+      border-bottom: 3px solid transparent;
+      display: inline-block;
+    }
+
+    /* Hover effect */
+    .navbar-menu a:hover {
+      color: #cce5ff;
+      border-bottom-color: #cce5ff;
+    }
+
+    /* Active menu item style */
+    .navbar-menu a.active {
+      border-bottom-color: #ffd700;
+      color: #ffd700;
+    }
+
+    /* Responsive mobile toggle - simple example */
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 20px;
+      }
+      .navbar-menu {
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'navbar.html' %}
+  
+  {% block body %}
+    
+  {% endblock body %}
+    
+
+</body>
+</html>

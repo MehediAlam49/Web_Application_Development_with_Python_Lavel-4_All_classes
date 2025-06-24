@@ -1,0 +1,54 @@
+{% extends "master.html" %}
+  <style>
+    /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(to right, #00b4d8, #0077b6);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+
+  {% block body %}
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to the Student Management System</h1>
+      <p>Track and manage students effortlessly in one place.</p>
+    </div>
+  </section>
+  {% endblock body %}
+
+
+
+</body>
+</html>

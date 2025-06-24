@@ -1,0 +1,41 @@
+{% extends "master.html" %}
+
+{% block body %}
+<section class="max-w-xl mx-auto p-8 bg-white rounded-2xl shadow-lg mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center text-indigo-600">➕ Add New Student</h2>
+    <form action="" method="POST" class="space-y-5">
+        {% csrf_token %}
+      <!-- Name -->
+      <div>
+        <label class="block mb-1 font-semibold text-gray-700">Name</label>
+        <input type="text" name="name" placeholder="Enter Full name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+  
+      <!-- Department -->
+      <div>
+        <label class="block mb-1 font-semibold text-gray-700">Department</label>
+        <input type="text" name = "department" placeholder="Enter Department's name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+  
+      <!-- Semester -->
+      <div>
+        <label class="block mb-1 font-semibold text-gray-700">Semester ($)</label>
+        <input type="text" name ="semester" placeholder="Enter your semester" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+
+      <!-- Library Join Date -->
+      <div>
+        <label class="block mb-1 font-semibold text-gray-700">Library Join Date</label>
+        <input type="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition duration-300">
+          Add Student
+        </button>
+      </div>
+    </form>
+  </section>
+  
+{% endblock body %}
