@@ -1,0 +1,73 @@
+{% extends 'master.html' %}
+
+{% block body %}
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .table-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .table-responsive {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    .btn-action {
+      margin: 0 2px;
+    }
+  </style>
+
+  <div class="container py-5">
+    <h2 class="mb-4 text-center fw-bold">User List</h2>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">User Type</th>
+            <th scope="col">Age</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Description</th>
+            <th scope="col">Institute</th>
+            <th scope="col">Passing Year</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td>
+                <img src="/{{ user.image }}" alt="User Image" class="table-img" />
+              </td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ request.user.user_type }}</td>
+              <td>{{ user.age }}</td>
+              <td>{{ user.mobile }}</td>
+              <td>{{ user.description|truncatechars:40 }}</td>
+              <td>{{ user.institute }}</td>
+              <td>{{ user.passingYear }}</td>
+              <td>{{ user.experience }}</td>
+              <td>
+                <div class="d-flex justify-content-center gap-2">
+                  <a href="{% url 'editUser' user.id %}" class="btn btn-sm btn-warning">Edit</a>
+                  <a href="{% url 'viewUser' user.id %}" class="btn btn-sm btn-info">View</a>
+                  <a href="{% url 'deleteUser' user.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="11">No users found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
