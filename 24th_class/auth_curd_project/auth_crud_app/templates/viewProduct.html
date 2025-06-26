@@ -1,0 +1,64 @@
+{% extends 'master.html' %}
+{% block body %}
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .product-card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .product-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .product-price {
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .action-buttons .btn {
+      margin-right: 5px;
+    }
+  </style>
+
+  <div class="container py-5">
+    {% comment %} <h2 class="text-center mb-4">Product List</h2> {% endcomment %}
+    <div class="row g-4">
+      <!-- Sample Product Card (repeat this for each product or use a Django loop) -->
+
+
+        <div class="col-md-6">
+          <div class="card product-card">
+            <img src="/{{ product.product_image }}" alt="{{ product.product_name }}" class="product-img" />
+            <div class="card-body">
+              <div class="product-title">{{ product.product_name }}</div>
+              <p class="text-muted small mb-2">{{ product.product_description|truncatewords:20 }}</p>
+              <div class="product-price mb-3">${{ product.product_price }}</div>
+              <div class="action-buttons d-flex">
+                <a href="{% url 'editProduct' product.id %}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="{% url 'viewProduct' product.id %}" class="btn btn-sm btn-info">View</a>
+                <a href="{% url 'deleteProduct' product.id %}" class="btn btn-sm btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+{% endblock %}
