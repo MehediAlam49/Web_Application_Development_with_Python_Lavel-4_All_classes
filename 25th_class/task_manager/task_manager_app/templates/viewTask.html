@@ -37,46 +37,31 @@
                   <strong>Due Date:</strong> {{ task.due_date }}
                 </div>
                 <div>
+                  <strong>Due IN:</strong> {{ task.due_date|timeuntil }}
+                </div>
+                <div>
                   <strong>Created At:</strong> {{ task.created_at|date:'M d, Y H:i' }}
                 </div>
               </li>
               <li class="list-group-item d-flex justify-content-between">
                 <div>
                   <strong>Priority:</strong>
-                  <span class="badge bg-{% if task.priority == 'high' %}
-                      
-                      danger
+                  <span class="badge 
+                    {% if task.priority == 'high' %}
+                      bg-danger
 
                     {% elif task.priority == 'medium' %}
-                      
-                      warning
+                      bg-warning text-dark
 
                     {% else %}
-                      
-                      success
+                      bg-success
 
                     {% endif %}">
-                    {{ task.priority|title }}
+                    {{ task.priority|capfirst }}
                   </span>
                 </div>
-                <div>
-                  <strong>Status:</strong>
-                  <span class="badge bg-{% if task.status == 'completed' %}
-                      
-                      success
 
-                    {% elif task.status == 'in_progress' %}
-                      
-                      primary
-
-                    {% else %}
-                      
-                      secondary
-
-                    {% endif %}">
-                    {{ task.status|title }}
-                  </span>
-                </div>
+                
               </li>
             </ul>
           </div>
