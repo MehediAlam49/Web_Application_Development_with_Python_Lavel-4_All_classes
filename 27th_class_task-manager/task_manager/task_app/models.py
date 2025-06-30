@@ -9,9 +9,14 @@ class CustumUserModel(AbstractUser):
 
 
 class taskModel(models.Model):
+    my=[
+        ('pending','Pending'),
+        ('in_progress','InProgress'),
+        ('completed','Completed'),
+    ]
     user = models.ForeignKey(CustumUserModel, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
     due_date = models.DateField(null=True)
     priority = models.CharField(choices=[('low','Low'),('medium','Medium'),('high','High')], max_length=100, null=True)
-    status = models.CharField(choices=[('pending','Pending'),('inProgress',' InProgress'),('completed','Completed')], max_length=100, null=True)
+    status = models.CharField(choices=my, max_length=100, null=True)

@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect,HttpResponse
 from task_app.models import *
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 def registerPage(request):
@@ -45,11 +46,16 @@ def logoutPage(request):
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    inProgressData = taskModel.objects.filter(user = request.user, status = 'in_progress')
+    pendingData = taskModel.objects.filter(user = request.user, status = 'pending')
+    completedData = taskModel.objects.filter(user = request.user, status = 'completed')
+    return render(request, 'home.html', {'inProgressData': inProgressData, 'pendingData':pendingData, 'completedData': completedData})
+
 @login_required
 def taskList(request):
     taskData = taskModel.objects.filter(user = request.user )
     return render(request, 'taskList.html', {'tasks': taskData})
+
 @login_required
 def addTask(request):
     if request.method == 'POST':
@@ -90,3 +96,19 @@ def viewTask(request,id):
     return render(request, 'viewTask.html', {'task': taskData})
 def deleteTask(request,id):
     return render(request, 'deleteTask.html')
+
+
+def changePasswordPage(request):
+    current_user = request.user
+    if request.method == 'POST':
+        oldPassword = request.POST.get('oldPassword')
+        newPassword = request.POST.get('newPassword')
+        confirmPassword = request.POST.get('confirmPassword')
+
+        if check_password(oldPassword, current_user.password):
+            if newPassword == confirmPassword:
+                current_user.set_password(newPassword)
+                current_user.save()
+                update_session_auth_hash(request,current_user)
+                return redirect('home')
+    return render(request, 'changePasswordPage.html')

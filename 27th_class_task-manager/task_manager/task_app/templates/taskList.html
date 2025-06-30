@@ -23,7 +23,7 @@
           {% for task in tasks %}
           <tr>
             <td>{{ task.title }}</td>
-            <td>{{ task.description|truncatechars:60 }}</td>
+            <td>{{ task.description}}</td>
             <td>{{ task.due_date }}</td>
             <td>
               <span class="badge bg-{% if task.priority == 'high' %}danger{% elif task.priority == 'medium' %}warning{% else %}success{% endif %}">
