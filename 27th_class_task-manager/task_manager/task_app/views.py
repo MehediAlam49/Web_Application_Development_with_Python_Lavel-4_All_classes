@@ -46,10 +46,11 @@ def logoutPage(request):
 
 @login_required
 def home(request):
+    total = taskModel.objects.filter(user = request.user)
     inProgressData = taskModel.objects.filter(user = request.user, status = 'in_progress')
     pendingData = taskModel.objects.filter(user = request.user, status = 'pending')
     completedData = taskModel.objects.filter(user = request.user, status = 'completed')
-    return render(request, 'home.html', {'inProgressData': inProgressData, 'pendingData':pendingData, 'completedData': completedData})
+    return render(request, 'home.html', {'total':total, 'inProgressData': inProgressData, 'pendingData':pendingData, 'completedData': completedData})
 
 @login_required
 def taskList(request):
