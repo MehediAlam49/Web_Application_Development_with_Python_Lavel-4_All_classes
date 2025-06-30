@@ -1,0 +1,65 @@
+{% extends 'master.html' %}
+{% block body %}
+<div class="container py-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0 text-center">@{{user.username}}'s Task</h4>
+      
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light text-center">
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in tasks %}
+          <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description|truncatechars:60 }}</td>
+            <td>{{ task.due_date }}</td>
+            <td>
+              <span class="badge bg-{% if task.priority == 'high' %}danger{% elif task.priority == 'medium' %}warning{% else %}success{% endif %}">
+                {{ task.priority|title }}
+              </span>
+            </td>
+            <td>
+              <span class="badge bg-{% if task.status == 'completed' %}success{% elif task.status == 'in_progress' %}primary{% else %}secondary{% endif %}">
+                {{ task.status|title }}
+              </span>
+            </td>
+            <td>{{ task.created_at|date:"M d, Y H:i" }}</td>
+            <td class="text-center">
+              <a href="{% url 'editTask' task.id %}" class="btn btn-sm btn-outline-primary me-1">
+                <i class="bi bi-pencil"></i> Edit
+              </a>
+              <a href="{% url 'viewTask' task.id %}" class="btn btn-sm btn-outline-primary me-1">
+                <i class="bi bi-pencil"></i> View
+              </a>
+              <a href="{% url 'deleteTask' task.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this task?');">
+                <i class="bi bi-trash"></i> Delete
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center text-muted">No tasks found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
