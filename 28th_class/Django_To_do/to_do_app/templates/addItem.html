@@ -1,0 +1,63 @@
+{% extends 'master.html' %}
+
+{% block body %}
+<style>
+  body {
+    background: #f8f9fa;
+  }
+  .card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  .form-label {
+    font-weight: 600;
+  }
+  .form-control, .form-select {
+    border-radius: 0.75rem;
+  }
+  .btn-primary {
+    border-radius: 0.75rem;
+    font-weight: bold;
+    padding: 0.6rem 1.5rem;
+  }
+</style>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card p-4 bg-white">
+          <h3 class="text-center mb-4 text-primary fw-bold">Add New Item</h3>
+          <form method="POST">
+            <!-- CSRF Token (for Django) -->
+            {% csrf_token %}
+  
+            <div class="mb-3">
+              <label for="title" class="form-label">Item Title</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="Enter item title" required>
+            </div>
+  
+            <div class="mb-3">
+              <label for="description" class="form-label">Item Description</label>
+              <textarea class="form-control" id="description" name="description" rows="4" placeholder="Write a short description" required></textarea>
+            </div>
+  
+            <div class="mb-4">
+              <label for="status" class="form-label">Status</label>
+              <select class="form-select" id="status" name="status" required>
+                <option value="">Select status</option>
+                <option value="pending">Pending</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+  
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary w-100">Add Item</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'master.html' %}
+
+{% block body %}
+<style>
+    body {
+      background-color: #f4f6f9;
+    }
+    .user-card {
+      border-radius: 1rem;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .user-image {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .user-header {
+      background: linear-gradient(135deg, #4e73df, #224abe);
+      padding: 2rem 1rem;
+      text-align: center;
+      color: white;
+    }
+    .user-header h5 {
+      margin-top: 0.75rem;
+      font-weight: 700;
+    }
+    .user-body {
+      padding: 2rem;
+    }
+    .user-body .info-item {
+      margin-bottom: 1rem;
+    }
+    .info-label {
+      font-weight: 600;
+      color: #6c757d;
+    }
+  </style>
+
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="user-card">
+        <div class="user-header">
+          <img src="{{user.image.url}}" alt="Profile Image" class="user-image">
+          <h5>@{{user.username}}</h5>
+        </div>
+        <div class="user-body">
+          <div class="info-item">
+            <div class="info-label">Full Name:</div>
+            <div>{{user.full_name}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Email:</div>
+            <div>{{user.email}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Phone:</div>
+            <div>{{user.phone}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Address:</div>
+            <div>{{user.address}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">City:</div>
+            <div>{{user.city_name}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Bio:</div>
+            <div>{{user.bio}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Created At:</div>
+            <div>{{user.created_at}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="user-card">
+        <div class="user-header">
+          <h5>To-do Items Summary</h5>
+        </div>
+        <div class="user-body">
+          <div class="info-item">
+            <div class="info-label">Total To-do:</div>
+            <div>{{total.count}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">In progress To-do:</div>
+            <div>{{in_progress_items.count}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Pending To-do:</div>
+            <div>{{pending_items.count}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Completed To-do:</div>
+            <div>{{completed_items.count}}</div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
