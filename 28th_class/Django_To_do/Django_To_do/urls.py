@@ -23,4 +23,5 @@ urlpatterns = [
     path('passwordNotMatched/', passwordNotMatched, name='deleteItem'),
     path('passwordWrong/', passwordWrong, name='passwordWrong'),
     path('changePassword/', changePassword, name='changePassword'),
+    path('statusChange/<str:id>', statusChange, name='statusChange'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

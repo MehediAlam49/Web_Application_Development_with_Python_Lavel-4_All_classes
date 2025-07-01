@@ -126,3 +126,15 @@ def changePassword(request):
                 update_session_auth_hash(request,current_user)
                 return redirect('home')
     return render(request, 'changePasswordPage.html')
+
+
+
+@login_required
+def statusChange(request, id):
+    itemData = itemModel.objects.get(id=id)
+    if itemData.status == 'pending':
+        itemData.status = 'in_progress'
+    elif itemData.status == 'in_progress':
+        itemData.status = 'completed'
+    itemData.save()
+    return redirect('itemList')
