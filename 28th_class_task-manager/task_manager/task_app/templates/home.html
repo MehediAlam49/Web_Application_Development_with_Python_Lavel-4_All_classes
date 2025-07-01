@@ -1,0 +1,117 @@
+{% extends 'master.html' %}
+{% block body %}
+  <div class="container py-5">
+    <div class="card mx-auto shadow-lg" style="max-width: 500px; border-radius: 15px;">
+      <div class="card-body text-center">
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="rounded-circle img-thumbnail shadow-sm mb-3" width="120" height="120" />
+        <h4 class="card-title">@{{ user.username }}</h4>
+        {% comment %} <h6 class="text-muted"><strong>Full Name:</strong>{{ user.full_name }}</h6> {% endcomment %}
+        <p class="text-secondary mb-1">
+          <strong>Email:</strong> {{ user.email }}
+        </p>
+        <p class="text-muted small mb-2">
+          <strong>Bio:</strong>{{ user.bio }}
+        </p>
+        {% comment %} <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary btn-sm">Edit Profile</a> {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg" style="border-radius: 15px;">
+            <div class="card-body text-center">
+              <h4 class="card-title">Task summery</h4>
+              <p class="text-secondary mb-1">
+                <strong>Total-:</strong> {{total.count}}
+              </p>
+              <p class="text-secondary mb-1">
+                <strong>Task Completed-:</strong> {{completedData.count}}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Task in progerss-:</strong> {{inProgressData.count}}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Task pending-:</strong> {{pendingData.count}}
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <h2>Task in progress-{{inProgressData.count}}</h2>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      {% for task in inProgressData %}
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg" style="border-radius: 15px;">
+            <div class="card-body text-center">
+              <h4 class="card-title">{{ task.title }}</h4>
+              <p class="text-secondary mb-1">
+                <strong>Description:</strong> {{ task.description }}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Due Date:</strong> {{ task.due_date }}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Status:</strong> {{ task.status }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <h2>Task Pending-{{pendingData.count}}</h2>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      {% for task in pendingData %}
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg" style="border-radius: 15px;">
+            <div class="card-body text-center">
+              <h4 class="card-title">{{ task.title }}</h4>
+              <p class="text-secondary mb-1">
+                <strong>Description:</strong> {{ task.description }}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Due Date:</strong> {{ task.due_date }}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Status:</strong> {{ task.status }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <h2>Task Completed-{{completedData.count}}</h2>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      {% for task in completedData %}
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg" style="border-radius: 15px;">
+            <div class="card-body text-center">
+              <h4 class="card-title">{{ task.title }}</h4>
+              <p class="text-secondary mb-1">
+                <strong>Description:</strong> {{ task.description }}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Due Date:</strong> {{ task.due_date }}
+              </p>
+              <p class="text-muted small mb-2">
+                <strong>Status:</strong> {{ task.status }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
