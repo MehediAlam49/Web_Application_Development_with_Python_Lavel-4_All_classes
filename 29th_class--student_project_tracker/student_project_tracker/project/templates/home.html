@@ -1,0 +1,39 @@
+{% extends 'master.html' %}
+{% block body %}
+
+<div class="container py-5">
+  <div class="row g-4">
+    <h2>{{request.user}}'s Project</h2>
+    {% for project in project %}
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg h-100" style="border-radius: 20px;">
+        <div class="card-body p-4 d-flex flex-column justify-content-between">
+
+          <div class="mb-3">
+            <h5 class="card-title text-primary fw-bold">{{ project.project_name }}</h5>
+            <p class="card-text text-muted" style="min-height: 60px;">
+              {{ project.project_description|truncatewords:20 }}
+            </p>
+          </div>
+
+          <div class="mt-auto">
+            <span class="badge 
+              {% if project.project_status == 'Completed' %}
+                bg-success
+              {% elif project.project_status == 'InProgress' %}
+                bg-warning text-dark
+              {% else %}
+                bg-secondary
+              {% endif %}">
+              {{ project.project_status }}
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

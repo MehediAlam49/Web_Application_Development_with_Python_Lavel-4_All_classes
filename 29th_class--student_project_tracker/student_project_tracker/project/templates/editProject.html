@@ -1,0 +1,61 @@
+{% extends 'master.html' %}
+{% block body %}
+<div class="container py-5">
+  <div class="card shadow-lg mx-auto" style="max-width: 700px; border-radius: 15px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">edit Project</h4>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="project_name" class="form-label">Project Name</label>
+          <input type="text" class="form-control" id="project_name" value="{{projects.project_name}}" name="project_name" placeholder="Enter project name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="project_description" class="form-label">Project Description</label>
+          <textarea class="form-control" id="project_description" name="project_description" rows="4" placeholder="Project details...">{{projects.project_description}}</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="deadline" class="form-label">Deadline</label>
+          <input type="date" class="form-control" value="{{projects.deadline|date:'Y-m-d'}}" id="deadline" name="deadline" required>
+        </div>
+
+
+        <div class="mb-4">
+          <label for="project_status" class="form-label">Project Status</label>
+          <select class="form-select" id="project_status" name="project_status" required>
+            <option disabled {% if not projects.project_status %}selected{% endif %}>Choose status</option>
+            
+            <option value="NotStarted"
+              {% if projects.project_status == 'NotStarted' %}
+                selected
+              {% endif %}
+            >Not started</option>
+
+            <option value="InProgress"
+              {% if projects.project_status == 'InProgress' %}
+                selected
+              {% endif %}
+            >In Progress</option>
+
+            <option value="Completed"
+              {% if projects.project_status == 'Completed' %}
+                selected
+              {% endif %}
+            >Completed</option>
+          </select>
+        </div>
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-5">Update Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
