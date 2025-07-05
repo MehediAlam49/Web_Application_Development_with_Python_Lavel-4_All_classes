@@ -1,0 +1,57 @@
+{% extends 'master.html' %}
+{% block body %}
+<div class="container py-5">
+  <div class="card shadow-lg mx-auto" style="max-width: 700px; border-radius: 15px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">Edit Student</h4>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="first_name" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="first_name" value="{{student.first_name}}" name="first_name" placeholder="Enter first name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="last_name" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="last_name" value="{{student.Last_name}}" name="last_name" placeholder="Enter last name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input type="number" class="form-control" id="age" value="{{student.age}}" name="age" placeholder="Enter age" required min="1">
+        </div>
+
+        <div class="mb-3">
+          <label for="grade" class="form-label">Grade</label>
+          <input type="number" class="form-control" value="{{student.grade}}" id="grade" name="grade" placeholder="Enter grade" required min="1">
+        </div>
+
+        {% comment %} <div class="mb-3">
+          <label for="grade" class="form-label">Grade</label>
+          <select class="form-select" id="grade" name="grade" required>
+            <option selected disabled>Choose grade</option>
+            <option value="1st">1st Grade</option>
+            <option value="2nd">2nd Grade</option>
+            <option value="3rd">3rd Grade</option>
+            <option value="4th">4th Grade</option>
+            <option value="5th">5th Grade</option>
+            <!-- Add more grades as needed -->
+          </select>
+        </div> {% endcomment %}
+
+        <div class="mb-4">
+          <label for="enrollment_date" class="form-label">Enrollment Date</label>
+          <input type="date" class="form-control" value="{{student.enrollment_date|date:'Y-m-d'}}" id="enrollment_date" name="enrollment_date" required>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-5">Update Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
