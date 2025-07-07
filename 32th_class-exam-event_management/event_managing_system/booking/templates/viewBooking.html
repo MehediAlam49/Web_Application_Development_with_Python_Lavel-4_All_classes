@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+{% block body %}
+<div class="container py-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0 text-center">@{{ user.username }}'s books</h4>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light text-center">
+          <tr>
+            <th>Event title</th>
+            <th>event type</th>
+            <th>Event description</th>
+            <th>status</th>
+            <th>event date</th>
+            <th>location</th>
+            <th>created by</th>
+            <th>created at</th>
+            <th>updated at</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td>{{ book.event_title }}</td>
+            <td>{{ book.event_type }}</td>
+            <td>{{ book.event_description }}</td>
+            <td>{{ book.status }}</td>
+            <td>{{ book.event_date }}</td>
+            <td>{{ book.location }}</td>
+            <td>{{ book.created_by }}</td>
+            <td>{{ book.created_at }}</td>
+            <td>{{ book.updated_at }}</td>
+
+            
+
+           
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

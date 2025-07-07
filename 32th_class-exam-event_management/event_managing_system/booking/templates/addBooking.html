@@ -1,0 +1,61 @@
+{% extends 'master.html' %}
+{% block body %}
+<div class="container py-5">
+  <div class="card shadow-lg mx-auto" style="max-width: 700px; border-radius: 15px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">Add New Book</h4>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="event_title" class="form-label">Event title</label>
+          <input type="text" class="form-control" id="event_title" name="event_title" placeholder="Enter first name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="event_type" class="form-label">Event type</label>
+          <select class="form-select" id="event_type" name="event_type" required>
+            <option selected disabled>Choose event_type</option>
+            <option value="Conference">Conference</option>
+            <option value="Concert">Concert</option>
+            <option value="Wedding">Wedding</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">event description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="event_description" rows="3"></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="event_date" class="form-label">Event Date</label>
+          <input type="date" class="form-control" id="event_date" name="event_date" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="status" class="form-label">status</label>
+          <select class="form-select" id="status" name="status" required>
+            <option selected disabled>Choose status</option>
+            <option value="NotStarted">NotStarted</option>
+            <option value="InProgress">InProgress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label">location</label>
+          <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" required min="1">
+        </div>
+
+        
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-5">Add Book</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'master.html' %}
+{% block body %}
+
+<div class="container py-5">
+  <div class="row g-4">
+    <h2>{{ request.user }}'s profile</h2>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg h-100" style="border-radius: 20px;">
+        <div class="card-body p-4 d-flex flex-column justify-content-between">
+
+          <div class="mb-3">
+            <h5 class="card-title text-primary fw-bold">full name: {{ request.user.full_name }}</h5>
+            <p class="card-text text-muted" style="min-height: 60px;">
+              email: {{ request.user.email }}
+            </p>
+            
+          </div>
+
+          {% comment %} <div class="mt-auto">
+            User type:
+            <span class="badge 
+              {% if project.project_status == 'Completed' %}
+                bg-success
+              {% elif project.project_status == 'InProgress' %}
+                bg-warning text-dark
+              {% else %}
+                bg-secondary
+              {% endif %}">
+               {{ request.user.user_type }}
+            </span>
+          </div> {% endcomment %}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
