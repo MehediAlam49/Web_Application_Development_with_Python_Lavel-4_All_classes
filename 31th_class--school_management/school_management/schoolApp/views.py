@@ -88,6 +88,7 @@ def addStudent(request):
         )
         return redirect('studentList')
     return render(request, 'addStudent.html')
+
 def studentList(request):
     if request.user.is_authenticated:
         if request.user.username == 'admin':
