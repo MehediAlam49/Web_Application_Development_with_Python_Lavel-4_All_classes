@@ -4,6 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
+from django.conf import settings
+from django.core.cache import cache
+from django.core.mail import send_mail
+import random
+
 
 def registerPage(request):
     if request.method == 'POST':
@@ -223,3 +228,22 @@ def acceptPendingStudent(request,id):
             )
             pendingStudent.delete()
             return redirect('studentListPage')
+        
+
+
+def forgot_password(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+
+        user = CustomUserModel.objects.filter(email=email).exists()
+        if user:
+            otp = random.randint(1000,9999)
+            cache.set(email,otp,timeout=300)
+            send_mail(
+                'Forgate Password OTP',
+                f'Your otp is: {otp}',
+                settings.EMAIL_HOST_USER,
+                [email]
+            )
+
+    return render(request, 'forgot_password/forgot_password.html')
