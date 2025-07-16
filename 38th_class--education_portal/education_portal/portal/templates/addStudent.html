@@ -1,0 +1,49 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-lg mx-auto" style="max-width: 700px; border-radius: 15px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">Add New Student</h4>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter first name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter last name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea name="address" id=""></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="degree_name" class="form-label">degree_name</label>
+          <input type="text" class="form-control" id="degree_name" name="degree_name" placeholder="Enter degree_name" required min="1">
+        </div>
+        <div class="mb-3">
+          <label for="grade" class="form-label">Grade</label>
+          <input type="number" class="form-control" id="grade" name="grade" placeholder="Enter grade" required min="1">
+        </div>
+        <div class="mb-3">
+          <label for="passing_year" class="form-label">passint_year</label>
+          <input type="number" class="form-control" id="passing_year" name="passing_year" placeholder="Enter passing_year" required min="1">
+        </div>
+
+        
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-5">Add Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

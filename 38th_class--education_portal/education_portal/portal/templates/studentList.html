@@ -1,0 +1,37 @@
+{% extends 'master.html' %}
+{% block content %}
+  <div class="container py-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0 text-center">Students</h4>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-light text-center">
+            <tr>
+              <th>Name</th>
+              <th>email</th>
+              <th>address</th>
+              <th>grade</th>
+              <th>degree name</th>
+              <th>passing year</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in student %}
+              <tr class="text-center">
+                <td>{{ student.student.name }}</td>
+                <td>{{ student.student.email }}</td>
+                <td>{{ student.student.address }}</td>
+                <td>{{ student.grade }}</td>
+                <td>{{ student.degree_name }}</td>
+                <td>{{ student.passing_year }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
