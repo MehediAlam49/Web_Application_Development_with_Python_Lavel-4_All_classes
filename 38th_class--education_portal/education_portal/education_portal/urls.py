@@ -10,8 +10,8 @@ urlpatterns = [
     path('logoutPage/', logoutPage,name='logoutPage'),
 
     path('home/', home,name='home'),
-    path('addTeacher/', addTeacher,name='addTeacher'),
-    path('teacher_list/', teacher_list,name='teacher_list'),
+    path('add-teacher/', addTeacher, name='addTeacher'),
+    path('teacher-list/', teacher_list, name='teacher_list'), 
     path('addStudent/', addStudent,name='addStudent'),
     path('studentList/', studentList,name='studentList'),
 ]

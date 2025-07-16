@@ -38,20 +38,32 @@ def logoutPage(request):
 
 def home(request):
     return render(request, 'home.html')
+
 def addTeacher(request):
     if request.method == 'POST':
-        teacher_info = TeachrForm(request.POST)
+        teacher_info = TeacherForm(request.POST)
         if teacher_info.is_valid():
             teacher_info.save()
             return redirect('teacher_list')
     else:
-        teacher_info= TeachrForm()
+        teacher_info= TeacherForm()
         
     context ={
         'teacher_info':teacher_info
     }
     
     return render(request, 'addTeacher.html', context)
+
+# def add_teacher(request):
+#     if request.method == 'POST':
+#         form = TeacherForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('teacher_list')  # Replace with your list view name
+#     else:
+#         form = TeacherForm()
+
+#     return render(request, 'addTeacher.html', {'teacher_info': form})
 
 def teacher_list(request):
     teacher_info = TeacherModel.objects.all()
