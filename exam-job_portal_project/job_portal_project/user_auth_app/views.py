@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
+from django.contrib import messages
 from user_auth_app.models import *
+from employer_app.models import *
+from candidate_app.models import *
 
 # Create your views here.
 def registerPage(request):
@@ -9,6 +12,7 @@ def registerPage(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         user_type = request.POST.get('user_type')
+        
 
         if user_type == 'Admin':
             CustomUserModel.objects.create_user(
@@ -40,6 +44,7 @@ def loginPage(request):
             login(request, user)
             return redirect('homePage')
         else:
+            messages.error(request, 'Invalid username or password.')
             return redirect('loginPage')
 
     return render(request, 'login.html')
@@ -67,20 +72,53 @@ def acceptPendingaccount(request,id):
     pendingAccount = PendingAccountModel.objects.get(id=id)
 
     if pendingAccount:
-        CustomUserModel.objects.create_user(
+        userData = CustomUserModel.objects.create_user(
             username=pendingAccount.username,
             email=pendingAccount.email,
             password=pendingAccount.phone,
+            user_type = pendingAccount.user_type,
+            phone=pendingAccount.phone,
         )
-        
+        if userData:
+            if pendingAccount.user_type == 'Employer':
+                EmployerProfileModel.objects.create(
+                    employer_user = userData,
+                    email = pendingAccount.email,
+                    phone = pendingAccount.phone,
+
+                )
+            elif pendingAccount.user_type == 'Candidate':
+                CandidateProfileModel.objects.create(
+                    candidate_user = userData,
+                    email = pendingAccount.email,
+                    phone = pendingAccount.phone,
+                )
         pendingAccount.delete()
-        return redirect('pendingListPage')
+    return redirect('pendingListPage')
 
 
-# def changePasswordPage(request):
-#     if request.method == 'POST':
-#         old_password = request.POST.get('old_password')
-#         new_password1 = request.POST.get('new_password1')
-#         new_password2 = request.POST.get('new_password2')
+def changePasswordPage(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
 
-#         user = request.user
+        user = request.user
+
+        if not user.check_password(old_password):
+            messages.error(request, 'Current password is incorrect.')
+            return render(request, 'changePassword.html')
+
+        if new_password1 != new_password2:
+            messages.error(request, 'New passwords do not match.')
+            return render(request, 'changePassword.html')
+
+
+        # Set new password
+        user.set_password(new_password1)
+        user.save()
+
+        update_session_auth_hash(request, user)
+
+        messages.success(request, 'Your password has been updated successfully.')
+        return redirect('profileInfo') 

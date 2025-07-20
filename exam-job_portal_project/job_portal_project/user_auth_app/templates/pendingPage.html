@@ -1,46 +1,55 @@
 {% extends 'master/master.html' %}
 
-
-<title>{% block title %}Student List | InstituteMS{% endblock %}</title>
-
+<title>{% block title %}Pending Student Accounts | Job portal{% endblock %}</title>
 
 {% block content %}
-<div class="card mt-4 shadow-sm">
-  <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
-    <h4 class="mb-0">Pending Account</h4>
-    {% comment %} <a href="{% url 'registerStudentPage' %}" class="btn btn-light btn-sm text-primary fw-semibold">
-      + Add New Student
-    </a> {% endcomment %}
-  </div>
+<div class="container my-5">
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-header bg-gradient bg-primary text-white d-flex justify-content-between align-items-center rounded-top-4">
+      <h4 class="mb-0"><i class="bi bi-hourglass-split me-2"></i>Pending Accounts</h4>
+    </div>
 
-  <div class="card-body">
-    <table class="table table-bordered table-hover text-center align-middle">
-      <thead class="table-light">
-        <tr>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Account type</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for account in pendingAccount %}
-        <tr>
-          <td>{{ account.username }}</td>
-          <td>{{ account.email }}</td>
-          <td>{{ account.phone }}</td>
-          <td>{{ account.user_type }}</td>
-          
-          <td>
-            <!-- View -->
-            <a href="{% url 'acceptPendingaccount' account.id %}" class="btn btn-sm btn-info">Accept</a>
-          </td>
-        </tr>
-        
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="card-body px-4 pt-4 pb-2">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle shadow-sm">
+          <thead class="table-light">
+            <tr class="text-secondary fw-semibold">
+              <th scope="col"><i class="bi bi-person-circle me-1"></i>Username</th>
+              <th scope="col"><i class="bi bi-envelope-at me-1"></i>Email</th>
+              <th scope="col"><i class="bi bi-telephone me-1"></i>Phone</th>
+              <th scope="col"><i class="bi bi-person-badge me-1"></i>Account Type</th>
+              <th scope="col"><i class="bi bi-gear me-1"></i>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for account in pendingAccount %}
+            <tr>
+              <td>{{ account.username }}</td>
+              <td>{{ account.email }}</td>
+              <td>{{ account.phone }}</td>
+              <td>
+                <span class="badge bg-secondary px-3 py-2">{{ account.user_type|title }}</span>
+              </td>
+              <td class="d-flex justify-content-center gap-2">
+                <!-- Accept Button -->
+                <a href="{% url 'acceptPendingaccount' account.id %}" class="btn btn-success btn-sm shadow-sm">
+                  <i class="bi bi-check-circle me-1"></i>Accept
+                </a>
+                <!-- Reject Button -->
+                {% comment %} <a href="{% url 'rejectPendingaccount' account.id %}" class="btn btn-danger btn-sm shadow-sm">
+                  <i class="bi bi-x-circle me-1"></i>Reject
+                </a> {% endcomment %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="5" class="text-muted py-4">No pending accounts found.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

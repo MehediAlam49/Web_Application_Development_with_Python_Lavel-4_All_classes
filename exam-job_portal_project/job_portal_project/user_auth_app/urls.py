@@ -9,5 +9,6 @@ urlpatterns = [
     path('profileInfo/', profileInfo, name='profileInfo'),
     path('pendingListPage/', pendingListPage, name='pendingListPage'),
     path('acceptPendingaccount/<str:id>', acceptPendingaccount, name='acceptPendingaccount'),
+    path('changePasswordPage/', changePasswordPage, name='changePasswordPage'),
 
 ]

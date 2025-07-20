@@ -5,7 +5,9 @@ from employer_app.models import *
 # Create your models here.
 
 class CandidateProfileModel(models.Model):
-    candidate_user = models.ForeignKey(CustomUserModel,on_delete=models.CASCADE,null=True)
+    candidate_user = models.OneToOneField(CustomUserModel,on_delete=models.CASCADE,null=True,related_name='candidate_profile')
+    phone = models.CharField(max_length=100,null=True)
+    email = models.EmailField(null=True)
     full_name = models.CharField(max_length=100,null=True)
     address = models.CharField(max_length=200, null=True)
     date_of_birth = models.DateField(null=True)
