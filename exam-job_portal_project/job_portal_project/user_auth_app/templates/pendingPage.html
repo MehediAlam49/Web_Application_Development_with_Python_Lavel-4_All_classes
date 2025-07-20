@@ -1,0 +1,46 @@
+{% extends 'master/master.html' %}
+
+
+<title>{% block title %}Student List | InstituteMS{% endblock %}</title>
+
+
+{% block content %}
+<div class="card mt-4 shadow-sm">
+  <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+    <h4 class="mb-0">Pending Account</h4>
+    {% comment %} <a href="{% url 'registerStudentPage' %}" class="btn btn-light btn-sm text-primary fw-semibold">
+      + Add New Student
+    </a> {% endcomment %}
+  </div>
+
+  <div class="card-body">
+    <table class="table table-bordered table-hover text-center align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Account type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for account in pendingAccount %}
+        <tr>
+          <td>{{ account.username }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.phone }}</td>
+          <td>{{ account.user_type }}</td>
+          
+          <td>
+            <!-- View -->
+            <a href="{% url 'acceptPendingaccount' account.id %}" class="btn btn-sm btn-info">Accept</a>
+          </td>
+        </tr>
+        
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
