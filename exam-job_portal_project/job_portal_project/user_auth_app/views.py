@@ -59,6 +59,10 @@ def homePage(request):
     return render(request, 'home.html', {'profile_list':profile_list})
 
 def profileInfo(request):
+    # profileData = EmployerProfileModel.objects.all()
+    # context={
+    #     'profileData':profileData
+    # }
     return render(request, 'profileInfo.html')
 
 
@@ -122,3 +126,26 @@ def changePasswordPage(request):
 
         messages.success(request, 'Your password has been updated successfully.')
         return redirect('profileInfo') 
+    return render(request, 'changePassword.html')
+
+def editProfile(request,id):
+    if request.user.user_type == 'Employer':
+        emp_profile_data = EmployerProfileModel.objects.get(id=id)
+
+        if request.method == 'POST':
+            emp_profile_data.company_name=request.POST.get('company_name')
+            emp_profile_data.email=request.POST.get('email')
+            emp_profile_data.phone=request.POST.get('phone')
+            emp_profile_data.about_company=request.POST.get('about')
+            emp_profile_data.location=request.POST.get('location')
+            picture = request.FILES.get('logo')
+            if picture:
+                emp_profile_data.company_logo=picture
+            emp_profile_data.save()
+
+            return redirect('profileInfo')
+        
+        context={
+            'emp_profile_data':emp_profile_data,
+        }
+    return render(request, 'editProfile.html',context)

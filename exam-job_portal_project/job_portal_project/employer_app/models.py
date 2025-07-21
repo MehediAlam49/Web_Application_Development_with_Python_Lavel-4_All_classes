@@ -4,7 +4,7 @@ from user_auth_app.models import *
 # Create your models here.
 
 class EmployerProfileModel(models.Model):
-    employer_user = models.OneToOneField(CustomUserModel, on_delete=models.CASCADE, null=True)
+    employer_user = models.OneToOneField(CustomUserModel, on_delete=models.CASCADE, null=True,related_name='employer_profile')
     company_name = models.CharField(max_length=100, null=True)
     email = models.EmailField( null=True)
     phone = models.CharField(max_length=100, null=True)
@@ -14,7 +14,7 @@ class EmployerProfileModel(models.Model):
 
 
 class JobModel(models.Model):
-    employer = models.ForeignKey(EmployerProfileModel,on_delete=models.CASCADE,null=True)
+    employer = models.ForeignKey(EmployerProfileModel,on_delete=models.CASCADE,null=True, related_name='employer_job')
     title = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
     requirements = models.TextField(null=True)
