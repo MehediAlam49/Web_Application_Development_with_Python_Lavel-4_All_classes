@@ -1,0 +1,90 @@
+{% extends 'master/master.html' %}
+
+
+{% block content %}
+    <style>
+  body {
+    background: #f1f4f7;
+  }
+  .card {
+    border-radius: 1rem;
+  }
+  .form-control,
+  .form-select {
+    border-radius: 0.5rem;
+  }
+  .btn-primary {
+    border-radius: 0.5rem;
+    padding: 10px 20px;
+  }
+</style>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg">
+        <div class="card-header bg-success text-white text-center">
+          <h4 class="mb-0">Job Posting Form</h4>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <!-- Job Title -->
+            <div class="mb-3">
+              <label for="jobTitle" class="form-label">Job Title</label>
+              <input type="text" class="form-control" id="jobTitle" name="title" required />
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="jobDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="jobDescription" name="description" rows="4" required></textarea>
+            </div>
+
+            <!-- Requirements -->
+            <div class="mb-3">
+              <label for="jobRequirements" class="form-label">Requirements</label>
+              <textarea class="form-control" id="jobRequirements" name="requirements" rows="4" required></textarea>
+            </div>
+
+            <!-- Salary -->
+            <div class="mb-3">
+              <label for="jobSalary" class="form-label">Salary (BDT)</label>
+              <input type="number" class="form-control" id="jobSalary" name="salary" required />
+            </div>
+
+            <!-- Job Type -->
+            <div class="mb-3">
+              <label for="jobType" class="form-label">Job Type</label>
+              <select class="form-select" id="jobType" name="job_type" required>
+                <option value="" disabled selected>Choose Job Type</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Remote">Remote</option>
+                <option value="Internship">Internship</option>
+              </select>
+            </div>
+
+            <!-- Deadline -->
+            <div class="mb-3">
+              <label for="deadline" class="form-label">Application Deadline</label>
+              <input type="date" class="form-control" id="deadline" name="deadline" required />
+            </div>
+
+            <!-- Posted Date -->
+            <div class="mb-3">
+              <label for="postedDate" class="form-label">Posted Date</label>
+              <input type="date" class="form-control" id="postedDate" name="posted_date" required />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Post Job</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+    

@@ -26,6 +26,19 @@
         </li>
         {% endif %}
 
+        {% if user.user_type == 'Employer' %}
+        <li class="nav-item">
+          <a class="nav-link fw-medium text-dark" href="{% url 'addJob' %}">
+            <i class="bi bi-clock-history me-1"></i>Add Job
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-medium text-dark" href="{% url 'pendingListPage' %}">
+            <i class="bi bi-clock-history me-1"></i>My Job
+          </a>
+        </li>
+        {% endif %}
+
         <!-- My Account Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle fw-medium text-dark" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown">

@@ -101,6 +101,13 @@ def acceptPendingaccount(request,id):
     return redirect('pendingListPage')
 
 
+def rejectPendingaccount(request,id):
+    pendingAccount = PendingAccountModel.objects.get(id=id)
+    pendingAccount.pending_status = 'Rejected'
+    pendingAccount.save()
+    return redirect('pendingListPage')
+
+
 def changePasswordPage(request):
     if request.method == 'POST':
         old_password = request.POST.get('old_password')
