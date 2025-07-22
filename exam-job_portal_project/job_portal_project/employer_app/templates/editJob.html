@@ -7,16 +7,16 @@
       <div class="col-lg-8">
         <div class="card shadow-lg">
           <div class="card-header bg-success text-white text-center">
-            <h4 class="mb-0">Job Posting Form</h4>
+            <h4 class="mb-0">Job editing Form</h4>
           </div>
           <div class="card-body">
             <form method="POST">
               {% csrf_token %}
-              {{job_form}}
+              {{formData}}
 
               <!-- Submit Button -->
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">Post Job</button>
+                <button type="submit" class="btn btn-primary">Update Job</button>
               </div>
             </form>
           </div>

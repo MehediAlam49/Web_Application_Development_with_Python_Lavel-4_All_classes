@@ -14,8 +14,8 @@ class CandidateProfileModel(models.Model):
 
 
 class JobApplicationModel(models.Model):
-    job = models.ForeignKey(JobModel,on_delete=models.CASCADE, null=True)
-    candidate = models.ForeignKey(CandidateProfileModel,on_delete=models.CASCADE,null=True)
+    job = models.ForeignKey(JobModel,on_delete=models.CASCADE, null=True,related_name='job_application')
+    candidate = models.ForeignKey(CandidateProfileModel,on_delete=models.CASCADE,null=True,related_name='candidate_job_application')
     last_education = models.CharField(max_length=100,null=True)
     work_experience = models.CharField(max_length=200, null=True)
     status = models.CharField(choices=[
