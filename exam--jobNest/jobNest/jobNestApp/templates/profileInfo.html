@@ -1,0 +1,57 @@
+{% extends 'master/master.html' %}
+
+{% block title %}Profile Info | Job Nest{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white text-center rounded-top-4 py-4">
+          <h4 class="mb-0"><i class="bi bi-person-circle me-2"></i>Profile Information</h4>
+        </div>
+        
+        
+
+          <div class="card-body px-4 py-4">
+          <ul class="list-group list-group-flush">
+            {% comment %} <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>Profile</strong>
+              <img src="{{ user.employer_profile.company_logo.url }}" alt="profile" width="200">
+            </li> {% endcomment %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>Username</strong>
+              <span class="text-muted">{{ user.username }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>Email</strong>
+              <span class="text-muted">{{ user.email }}</span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>phone</strong>
+              <span class="text-muted">{{ user.phone }}</span>
+            </li>
+            
+            {% if user.get_user_type_display %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>User Type</strong>
+              <span class="badge bg-info text-dark">{{ user.get_user_type_display }}</span>
+            </li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>Role</strong>
+              <span class="badge bg-danger">Admin</span>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <a href="">Edit Profile</a>
+      
+          
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

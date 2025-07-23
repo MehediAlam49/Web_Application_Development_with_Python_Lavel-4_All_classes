@@ -1,0 +1,85 @@
+{% extends 'master/master.html' %}
+
+
+ 
+ {% block content %}
+     <style>
+    body {
+      background: #f8f9fa;
+    }
+    .card {
+      border-radius: 1rem;
+    }
+    .form-control, .form-select {
+      border-radius: 0.5rem;
+    }
+    .btn-primary {
+      border-radius: 0.5rem;
+      padding: 10px 20px;
+    }
+  </style>
+
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Company Information Form</h4>
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Company Name -->
+            <div class="mb-3">
+              <label for="companyName" class="form-label">Company Name</label>
+              <input type="text" class="form-control" value="{{user.employer_profile.company_name}}" id="companyName" name="company_name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="companyEmail" class="form-label">Email</label>
+              <input type="email" value="{{user.email}}" class="form-control" id="companyEmail" name="email" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label for="companyPhone" class="form-label">Phone</label>
+              <input type="text" value="{{user.phone}}" class="form-control" id="companyPhone" name="phone" required>
+            </div>
+
+            <!-- About Company -->
+            <div class="mb-3">
+              <label for="aboutCompany" class="form-label">About Company</label>
+              <textarea class="form-control"  id="aboutCompany" name="about" rows="4" required>{{user.employer_profile.about_company}}</textarea>
+            </div>
+
+            <!-- Company Logo -->
+            <div class="mb-3">
+              <label for="companyLogo" class="form-label">Company Logo</label>
+              
+              {% if user.employer_profile.company_logo %}
+              <img src="{{ user.employer_profile.company_logo.url }}" alt="profile" width="200">
+              {% endif %}
+              <input type="file" class="form-control" id="companyLogo" name="logo" accept="image/*">
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3">
+              <label for="companyLocation" class="form-label">Location</label>
+              <input type="text" value="{{user.employer_profile.location}}" class="form-control" id="companyLocation" name="location" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ {% endblock %}
+    
+
