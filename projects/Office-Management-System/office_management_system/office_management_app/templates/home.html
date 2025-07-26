@@ -1,0 +1,105 @@
+{% extends 'master.html' %}
+
+{% block body %}
+  <style>
+    .card-icon {
+      font-size: 2.5rem;
+      color: #0d6efd;
+    }
+  </style>
+
+  <div class="container my-5">
+    <!-- ======= Admin Dashboard ======= -->
+    <section id="adminDashboard">
+      <h2>Admin Dashboard</h2>
+      <div class="row g-4 mt-3">
+        <div class="col-md-4">
+          <div class="card shadow-sm border-primary">
+            <div class="card-body d-flex align-items-center">
+              <div class="card-icon me-3">👥</div>
+              <div>
+                <h5 class="card-title">Total Employees</h5>
+                <p class="card-text fs-4">120</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm border-success">
+            <div class="card-body d-flex align-items-center">
+              <div class="card-icon me-3">🏢</div>
+              <div>
+                <h5 class="card-title">Departments</h5>
+                <p class="card-text fs-4">8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm border-warning">
+            <div class="card-body d-flex align-items-center">
+              <div class="card-icon me-3">⏳</div>
+              <div>
+                <h5 class="card-title">Pending Leave Requests</h5>
+                <p class="card-text fs-4">15</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Employee Dashboard ======= -->
+    <section id="employeeDashboard" class="mt-5">
+      <h2>Employee Dashboard</h2>
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Welcome, John Doe!</h5>
+          <p class="card-text">Glad to have you back.</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card border-info shadow-sm">
+            <div class="card-header bg-info text-white">Profile Summary</div>
+            <div class="card-body">
+              <p>
+                <strong>Name:</strong> John Doe
+              </p>
+              <p>
+                <strong>Department:</strong> Marketing
+              </p>
+              <p>
+                <strong>Position:</strong> Marketing Specialist
+              </p>
+              <p>
+                <strong>Email:</strong> john.doe@example.com
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card border-secondary shadow-sm">
+            <div class="card-header bg-secondary text-white">Leave Summary</div>
+            <div class="card-body">
+              <p>
+                <strong>Total Leaves:</strong> 20 days
+              </p>
+              <p>
+                <strong>Leaves Taken:</strong> 8 days
+              </p>
+              <p>
+                <strong>Leaves Remaining:</strong> 12 days
+              </p>
+              <p>
+                <strong>Pending Requests:</strong> 2
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

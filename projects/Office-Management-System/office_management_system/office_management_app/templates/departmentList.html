@@ -1,0 +1,34 @@
+{% extends 'master.html' %}
+
+{% block body %}
+  <div class="container my-5">
+    <h2>Department List</h2>
+    <a href="{% url 'addDepartment' %}">Add new department</a>
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+         
+          <th>Department Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example rows -->
+
+        {% for department in departmentData %}
+          <tr>
+            
+            <td>{{department.department_name}}</td>
+            <td>{{department.description}}</td>
+            <td>
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
+                <a href="#">view</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

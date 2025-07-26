@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+
+{% block body %}
+    <div class="container my-5" style="max-width: 600px;">
+    <h2>Add Department</h2>
+    <form method="POST">
+        {% csrf_token %}
+      <div class="mb-3">
+        <label for="departmentName" class="form-label">Department Name</label>
+        <input type="text" class="form-control" name="department_name" id="departmentName" placeholder="Enter department name" required />
+      </div>
+      <div class="mb-3">
+        <label for="departmentDescription" class="form-label">Description</label>
+        <textarea class="form-control" name="description" id="departmentDescription" rows="4" placeholder="Enter description"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Department</button>
+    </form>
+  </div>
+{% endblock body %}

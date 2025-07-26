@@ -1,0 +1,48 @@
+{% extends 'master.html' %}
+
+{% block body %}
+    <!-- Page Content -->
+  <div class="container my-5">
+    <h2 class="mb-4">Leave List</h2>
+    <a href="{% url 'addLeave' %}">add a leave</a>
+    
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Employee Name</th>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          {% for leaveData in leaveData %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{leaveData.employee}}</td>
+            <td>{{leaveData.leave_type}}</td>
+            <td>{{leaveData.from_date}}</td>
+            <td>{{leaveData.to_date}}</td>
+            <td>{{leaveData.reason}}</td>
+            <td>{{leaveData.status}}</td>
+            <td>
+              <button class="btn btn-success btn-sm">Approve</button>
+              <button class="btn btn-danger btn-sm">Reject</button>
+            </td>
+          </tr>
+          {% endfor %}
+            
+         
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock body %}
+

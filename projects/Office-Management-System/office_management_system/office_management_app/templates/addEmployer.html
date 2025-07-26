@@ -1,0 +1,52 @@
+{% extends 'master.html' %}
+
+{% block body %}
+  <div class="container my-5" style="max-width: 700px;">
+    <h2 class="mb-4">Add Employee</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullName" name="full_name" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" id="phone" name="phone" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="department" class="form-label">Department</label>
+        <select class="form-select" id="department" name="department" required>
+          <option value="" selected disabled>Select department</option>
+
+          {% for i in departmentData %}
+            <option value="{{ i.id }}">{{ i.department_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <input type="text" class="form-control" id="position" name="position" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="joiningDate" class="form-label">Date of Joining</label>
+        <input type="date" class="form-control" id="joiningDate" name="join_date" required />
+      </div>
+
+      <div class="mb-4">
+        <label for="profilePicture" class="form-label">Profile Picture</label>
+        <input class="form-control" type="file" id="profilePicture" name="profile" accept="image/*" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Employee</button>
+    </form>
+  </div>
+{% endblock %}

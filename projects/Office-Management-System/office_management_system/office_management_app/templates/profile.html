@@ -1,0 +1,39 @@
+{% extends 'master.html' %}
+
+{% block body %}
+    <style>
+    .profile-card {
+      max-width: 350px;
+      margin: auto;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .profile-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+  </style>
+  <div class="container my-5">
+    <div class="card profile-card text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfroJ7CaeLakb4PbEmX6bFq42AtxPBsYFYag&s" alt="Profile Picture" class="profile-img">
+      <div class="card-body">
+        <h4 class="card-title">{{request.user.username}}</h4>
+        <p class="text-muted">{{request.user.user_type}}</p>
+        
+        {% if request.user.user_type == 'Employee' %}
+            <p class="text-muted">Full Name: {{employerData.full_name}}</p>
+        {% endif %}
+            
+        <p class="card-text">Passionate developer with a love for clean code and elegant design. Based in San Francisco.</p>
+        <div class="d-flex justify-content-center gap-2">
+          <a href="#" class="btn btn-primary btn-sm">Follow</a>
+          <a href="mailto:johndoe@example.com" class="btn btn-outline-secondary btn-sm">Message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}
+    

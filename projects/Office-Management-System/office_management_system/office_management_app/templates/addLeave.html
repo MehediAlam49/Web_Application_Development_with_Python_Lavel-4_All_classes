@@ -1,0 +1,48 @@
+{% extends 'master.html' %}
+
+{% block body %}
+<div class="container my-5" style="max-width: 700px;">
+  <h2 class="mb-4">Add Leave Request</h2>
+  <form action="" method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="employee" class="form-label">Employee</label>
+      <select class="form-select" id="employee" name="employee" required>
+        <option value="" disabled selected>Select employee</option>
+        {% for emp in employees %}
+          <option value="{{ emp.id }}">{{ emp.full_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="leaveType" class="form-label">Leave Type</label>
+      <select class="form-select" id="leave_type" name="leave_type" required>
+        <option value="" disabled selected>Select leave type</option>
+          <option value="Casual_leave">Casual_leave</option>
+          <option value="Sick_leave">Sick_leave</option>
+          <option value="Annual_leave">Annual_leave</option>
+          <option value="Paternity_leave">Paternity_leave</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="fromDate" class="form-label">From Date</label>
+      <input type="date" class="form-control" id="fromDate" name="from_date" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="toDate" class="form-label">To Date</label>
+      <input type="date" class="form-control" id="toDate" name="to_date" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="reason" class="form-label">Reason</label>
+      <textarea class="form-control" id="reason" name="reason" rows="4" placeholder="Enter reason" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Leave Request</button>
+  </form>
+</div>
+{% endblock %}

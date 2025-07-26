@@ -107,6 +107,7 @@ def addJob(request):
     if request.method == 'POST':
         job_form = JobModelForm(request.POST)
         if job_form.is_valid():
+            
             job_form.save()
             return redirect('jobListPage')
     else:
