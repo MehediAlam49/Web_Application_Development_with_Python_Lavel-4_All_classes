@@ -76,11 +76,14 @@ def changePasswordPage(request):
     return render(request, 'changePassword.html')
 @login_required
 def home(request):
-    bookData = BookModel.objects.all()
+    user = request.user
+    bookData = BookModel.objects.filter(added_by=user)
     return render(request, 'home.html',{'bookData':bookData})
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
 @login_required
 def editProfile(request):
     user = request.user
@@ -101,7 +104,7 @@ def editProfile(request):
             return redirect('profile')
         
     elif request.user.user_type == 'Student':
-        student_data = LibrarianProfileModel.objects.get(student_id=user)
+        student_data = StudentProfileModel.objects.get(student_id=user)
         if request.method == 'POST':
             student_data.department = request.POST.get('department')
             student_data.contact_number = request.POST.get('contact_number')
@@ -111,27 +114,36 @@ def editProfile(request):
             return redirect('profile')
 
     return render(request, 'editProfile.html',context)
+
 @login_required
 def addBook(request):
     if request.method == 'POST':
         book_form = BookModelForm(request.POST)
         if book_form.is_valid():
-            book_form.save()
-            return redirect('bookListPage')
+            book = book_form.save(commit=False)
+            book.added_by = request.user
+            book.save()
+            return redirect('home')
     else:
         book_form = BookModelForm()
         
     return render(request, 'addBook.html',{'book_form':book_form})
 
+
+
+
 @login_required
 def viewBook(request,id):
     bookData = BookModel.objects.get(id=id)
     return render(request, 'viewBook.html',{'bookData':bookData})
+    
 @login_required
 def deleteBook(request,id):
     books = BookModel.objects.get(id=id).delete()
     return redirect('home')
+
 @login_required
+
 def bookListPage(request):
     bookData = BookModel.objects.all()
     return render(request, 'bookList.html',{'bookData':bookData})

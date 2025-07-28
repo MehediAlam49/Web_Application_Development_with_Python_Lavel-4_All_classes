@@ -21,7 +21,8 @@
 
         <th>Author</th>
         <th>ISBN</th>
-        <th>Quentity</th>
+        <th>Quantity</th>
+        <th>Added by</th>
         <th>Created at</th>
         <th>Actions</th>
       </tr>
@@ -29,11 +30,12 @@
     <tbody>
       {% for book in bookData %}
         <tr>
-          <td>{{ book.title }}</td>
+          <td>{{ book.title|truncatechars:10 }}</td>
 
-          <td>{{ book.author }}</td>
-          <td>{{ book.isbn }}</td>
-          <td>{{ book.quantity }}</td>
+          <td>{{ book.author|truncatechars:10 }}</td>
+          <td>{{ book.isbn|truncatechars:10 }}</td>
+          <td>{{ book.quantity|truncatechars:10 }}</td>
+          <td>{{ book.added_by|truncatechars:10 }}</td>
           <td>{{ book.created_at }}</td>
 
           <td>
@@ -49,7 +51,7 @@
         </tr>
       {% empty %}
         <tr>
-          <td colspan="7">No students found.</td>
+          <td colspan="7">No books found.</td>
         </tr>
       {% endfor %}
     </tbody>

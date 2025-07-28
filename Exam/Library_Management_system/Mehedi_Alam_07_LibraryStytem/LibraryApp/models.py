@@ -13,6 +13,7 @@ class BookModel(models.Model):
     isbn = models.CharField(max_length=100,null=True)
     quantity = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
+    added_by = models.ForeignKey(CustomUserModel,on_delete=models.CASCADE,null=True,related_name='book_info')
     def __str__(self):
         return self.title
 
@@ -22,7 +23,8 @@ class StudentProfileModel(models.Model):
     contact_number = models.CharField(max_length=100,null=True)
     address = models.CharField(max_length=100,null=True)
     profile = models.ImageField(upload_to='media/profile',null=True)
-    
+    def __str__(self):
+        return self.student_id.username
     
 class LibrarianProfileModel(models.Model):
     employee_id = models.OneToOneField(CustomUserModel,on_delete=models.CASCADE,null=True)
@@ -30,4 +32,5 @@ class LibrarianProfileModel(models.Model):
     phone = models.CharField(max_length=100,null=True)
     address = models.CharField(max_length=100,null=True)
     profile = models.ImageField(upload_to='media/profile',null=True)
-    
+    def __str__(self):
+        return self.employee_id.username
