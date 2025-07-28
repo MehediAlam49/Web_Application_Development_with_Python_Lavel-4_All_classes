@@ -17,7 +17,7 @@ urlpatterns = [
     path('editProfile/', editProfile, name='editProfile'),
     path('addBook/', addBook, name='addBook'),
     path('viewBook/<str:id>', viewBook, name='viewBook'),
-    # path('editBook/<str:id>', editBook, name='editBook'),
+    path('editBook/<str:id>', editBook, name='editBook'),
     path('deleteBook/<str:id>', deleteBook, name='deleteBook'),
     path('bookListPage/', bookListPage, name='bookListPage'),
 

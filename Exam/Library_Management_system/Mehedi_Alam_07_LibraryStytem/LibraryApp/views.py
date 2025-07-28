@@ -77,43 +77,59 @@ def changePasswordPage(request):
 @login_required
 def home(request):
     user = request.user
-    bookData = BookModel.objects.filter(added_by=user)
-    return render(request, 'home.html',{'bookData':bookData})
+    if user.user_type == 'Librarian':
+        bookData = BookModel.objects.filter(added_by=user)
+    elif user.user_type == 'Student':
+        bookData = BookModel.objects.all()
+    else:
+        bookData = BookModel.objects.none()  
+
+    return render(request, 'home.html', {'bookData': bookData})
+
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    user = request.user
+    student = StudentProfileModel.objects.filter(student_id=user).first()
+    librarian = LibrarianProfileModel.objects.filter(employee_id=user).first()
+
+    context = {
+        'student': student,
+        'librarian': librarian,
+    }
+    return render(request, 'profile.html',context)
 
 @login_required
 def editProfile(request):
     user = request.user
-    student = StudentProfileModel.objects.filter(student_id=user)
-    librarian = LibrarianProfileModel.objects.filter(employee_id=user)
-    context={
-        'student':student,
-        'librarian':librarian
-    }
-    if request.user.user_type == 'Librarian':
-        librarian_data = LibrarianProfileModel.objects.get(employee_id=user)
+    student = StudentProfileModel.objects.filter(student_id=user).first()
+    librarian = LibrarianProfileModel.objects.filter(employee_id=user).first()
+
+    if user.user_type == 'Librarian' and librarian:
         if request.method == 'POST':
-            librarian_data.designation = request.POST.get('designation')
-            librarian_data.phone = request.POST.get('phone')
-            librarian_data.address = request.POST.get('address')
-            librarian_data.profile = request.FILES.get('profile')
-            librarian_data.save()
+            librarian.designation = request.POST.get('designation')
+            librarian.phone = request.POST.get('phone')
+            librarian.address = request.POST.get('address')
+            if request.FILES.get('profile'):
+                librarian.profile = request.FILES.get('profile')
+            librarian.save()
             return redirect('profile')
-        
-    elif request.user.user_type == 'Student':
-        student_data = StudentProfileModel.objects.get(student_id=user)
+    elif user.user_type == 'Student' and student:
         if request.method == 'POST':
-            student_data.department = request.POST.get('department')
-            student_data.contact_number = request.POST.get('contact_number')
-            student_data.address = request.POST.get('address')
-            student_data.profile = request.FILES.get('profile')
-            student_data.save()
+            student.department = request.POST.get('department')
+            student.contact_number = request.POST.get('contact_number')
+            student.address = request.POST.get('address')
+            if request.FILES.get('profile'):
+                student.profile = request.FILES.get('profile')
+            student.save()
             return redirect('profile')
 
-    return render(request, 'editProfile.html',context)
+    context = {
+        'student': student,
+        'librarian': librarian
+    }
+    return render(request, 'editProfile.html', context)
+
 
 @login_required
 def addBook(request):
@@ -129,7 +145,21 @@ def addBook(request):
         
     return render(request, 'addBook.html',{'book_form':book_form})
 
+def editBook(request,id):
+    user = request.user
+    book = BookModel.objects.filter(id=id,added_by=user).first()
+    if not book:
+        return HttpResponseNotFound("Book not found")
 
+    if request.method == 'POST':
+        form = BookModelForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = BookModelForm(instance=book)
+
+    return render(request, 'editBook.html', {'book_form': form})
 
 
 @login_required

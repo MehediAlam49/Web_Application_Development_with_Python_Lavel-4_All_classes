@@ -5,60 +5,77 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6">
-        <div class="card shadow-lg border-0 rounded-4">
-          <div class="card-header bg-primary text-white text-center rounded-top-4 py-4">
-            <h4 class="mb-0"><i class="bi bi-person-circle me-2"></i>Profile Information</h4>
-          </div>
-
-            <div class="card-body px-4 py-4">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <strong>Profile</strong>
-                  <img src="{{ request.user.profile.url }}" alt="profile" width="200" />
-                </li>
-                
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <strong>Username</strong>
-                  <span class="text-muted">{{ request.user.username }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <strong>Email</strong>
-                  <span class="text-muted">{{ request.user.email }}</span>
-                </li>
-
-                {% if request.user.user_type == 'Student' %}
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Department</strong>
-                    <span class="text-muted">{{ user.request.department }}</span>
-                  </li>
-                {% elif request.user.user_type == 'Librarian' %}
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Designation</strong>
-                    <span class="text-muted">{{ user.request.designation }}</span>
-                  </li>
-                {% endif %}
-
-                {% if user.get_user_type_display %}
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>User Type</strong>
-                    <span class="badge bg-info text-dark">{{ user.get_user_type_display }}</span>
-                  </li>
-                {% endif %}
-                {% if user.is_superuser %}
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>Role</strong>
-                    <span class="badge bg-danger">Admin</span>
-                  </li>
-                {% endif %}
-              </ul>
-            </div>
-            <a href="{% url 'editProfile' %}">Edit Profile</a>
-          
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white text-center rounded-top-4 py-4">
+          <h4 class="mb-0"><i class="bi bi-person-circle me-2"></i>Profile Information</h4>
         </div>
+
+        <div class="card-body px-4 py-4">
+          <ul class="list-group list-group-flush">
+
+            <!-- Profile Image -->
+            <li class="list-group-item text-center">
+              {% if librarian %}
+                <img src="{{ librarian.profile.url }}" class="img-fluid rounded-circle" width="150" alt="Profile Image">
+              {% elif student %}
+                <img src="{{ student.profile.url }}" class="img-fluid rounded-circle" width="150" alt="Profile Image">
+              {% endif %}
+            </li>
+
+            <!-- Common Fields -->
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>Username</strong>
+              <span class="text-muted">{{ request.user.username }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <strong>Email</strong>
+              <span class="text-muted">{{ request.user.email }}</span>
+            </li>
+
+            <!-- Student Fields -->
+            {% if request.user.user_type == 'Student' %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Department</strong>
+                <span class="text-muted">{{ student.department }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Contact Number</strong>
+                <span class="text-muted">{{ student.contact_number }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Address</strong>
+                <span class="text-muted">{{ student.address }}</span>
+              </li>
+
+            <!-- Librarian Fields -->
+            {% elif request.user.user_type == 'Librarian' %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Designation</strong>
+                <span class="text-muted">{{ librarian.designation }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Phone</strong>
+                <span class="text-muted">{{ librarian.phone }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Address</strong>
+                <span class="text-muted">{{ librarian.address }}</span>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="card-footer text-center bg-white border-0 pb-4">
+          <a href="{% url 'editProfile' %}" class="btn btn-outline-primary px-4">
+            <i class="bi bi-pencil-square me-1"></i> Edit Profile
+          </a>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 {% endblock %}

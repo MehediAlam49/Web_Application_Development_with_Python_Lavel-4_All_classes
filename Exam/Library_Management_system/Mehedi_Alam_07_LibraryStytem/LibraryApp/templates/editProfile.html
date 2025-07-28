@@ -1,90 +1,111 @@
 {% extends 'master/master.html' %}
 
 {% block content %}
-  <style>
-    body {
-      background: #f8f9fa;
-    }
-    .card {
-      border-radius: 1rem;
-    }
-    .form-control,
-    .form-select {
-      border-radius: 0.5rem;
-    }
-    .btn-primary {
-      border-radius: 0.5rem;
-      padding: 10px 20px;
-    }
-  </style>
+<style>
+  body {
+    background: #f0f2f5;
+  }
 
-  <div class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card shadow-lg">
-          <div class="card-header bg-primary text-white text-center">
-            <h4 class="mb-0">Edit profile</h4>
-          </div>
-          <div class="card-body">
-            <form method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              <!-- Company Name -->
+  .card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
 
-              {% if request.user.user_type == 'Librarian' %}
-                <div class="mb-3">
-                  <label for="designation" class="form-label">Designation</label>
-                  <input type="text" class="form-control"  id="designation" name="designation" required />
-                </div>
-              {% elif request.user.user_type == 'Student' %}
-                <div class="mb-3">
-                  <label for="department" class="form-label">Department</label>
-                  <input type="text" class="form-control" id="department" name="department" required />
-                </div>
+  .form-control,
+  .form-select {
+    border-radius: 0.5rem;
+  }
+
+  .btn-primary {
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+  }
+
+  .profile-image {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 2px solid #007bff;
+  }
+</style>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card p-4">
+        <div class="card-header bg-white text-center">
+          <h4 class="mb-0 fw-bold text-primary">Edit Your Profile</h4>
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Profile Image -->
+            <div class="text-center">
+              {% if request.user.user_type == 'Librarian' and librarian.profile %}
+                <img src="{{ librarian.profile.url }}" class="profile-image" alt="Profile Image">
+              {% elif request.user.user_type == 'Student' and student.profile %}
+                <img src="{{ student.profile.url }}" class="profile-image" alt="Profile Image">
+              {% else %}
+                <img src="https://via.placeholder.com/120" class="profile-image" alt="Default Profile">
               {% endif %}
+            </div>
 
-              {% if request.user.user_type == 'Librarian' %}
-                <div class="mb-3">
-                  <label for="phone" class="form-label">phone</label>
-                  <input type="number" class="form-control"  id="phone" name="phone" required />
-                </div>
-              {% elif request.user.user_type == 'Student' %}
-                <div class="mb-3">
-                  <label for="contact_number" class="form-label">contact_number</label>
-                  <input type="number" class="form-control"  id="contact_number" name="contact_number" required />
-                </div>
-              {% endif %}
-              {% if request.user.user_type == 'Librarian' %}
-                <div class="mb-3">
-                  <label for="address" class="form-label">address</label>
-                  <input type="text" class="form-control"  id="address" name="address" required />
-                </div>
-              {% elif request.user.user_type == 'Student' %}
-                <div class="mb-3">
-                  <label for="address" class="form-label">address</label>
-                  <input type="text" class="form-control"  id="address" name="address" required />
-                </div>
-              {% endif %}
-              {% if request.user.user_type == 'Librarian' %}
-                <div class="mb-3">
-                  <label for="profile" class="form-label">profile</label>
-                  <input type="file" class="form-control" id="profile" name="profile" required />
-                </div>
-              {% elif request.user.user_type == 'Student' %}
-                <div class="mb-3">
-                  <label for="profile" class="form-label">profile</label>
-                  <input type="file" class="form-control"  id="profile" name="profile" required />
-                </div>
-              {% endif %}
-
-
-              <!-- Submit Button -->
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Update</button>
+            {% if request.user.user_type == 'Librarian' %}
+              <div class="mb-3">
+                <label for="designation" class="form-label">Designation</label>
+                <input type="text" class="form-control" id="designation" name="designation" value="{{ librarian.designation }}" required>
               </div>
-            </form>
-          </div>
+
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{ librarian.phone }}" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ librarian.address }}" required>
+              </div>
+
+              <div class="mb-4">
+                <label for="profile" class="form-label">Upload New Profile</label>
+                <input type="file" class="form-control" id="profile" name="profile">
+              </div>
+
+            {% elif request.user.user_type == 'Student' %}
+              <div class="mb-3">
+                <label for="department" class="form-label">Department</label>
+                <input type="text" class="form-control" id="department" name="department" value="{{ student.department }}" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="contact_number" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="contact_number" name="contact_number" value="{{ student.contact_number }}" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ student.address }}" required>
+              </div>
+
+              <div class="mb-4">
+                <label for="profile" class="form-label">Upload New Profile</label>
+                <input type="file" class="form-control" id="profile" name="profile">
+              </div>
+            {% endif %}
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save me-1"></i> Update Profile
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
