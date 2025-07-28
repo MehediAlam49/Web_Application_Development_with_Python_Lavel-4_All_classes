@@ -1,0 +1,90 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+  <style>
+    body {
+      background: #f8f9fa;
+    }
+    .card {
+      border-radius: 1rem;
+    }
+    .form-control,
+    .form-select {
+      border-radius: 0.5rem;
+    }
+    .btn-primary {
+      border-radius: 0.5rem;
+      padding: 10px 20px;
+    }
+  </style>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0">Edit profile</h4>
+          </div>
+          <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <!-- Company Name -->
+
+              {% if request.user.user_type == 'Librarian' %}
+                <div class="mb-3">
+                  <label for="designation" class="form-label">Designation</label>
+                  <input type="text" class="form-control"  id="designation" name="designation" required />
+                </div>
+              {% elif request.user.user_type == 'Student' %}
+                <div class="mb-3">
+                  <label for="department" class="form-label">Department</label>
+                  <input type="text" class="form-control" id="department" name="department" required />
+                </div>
+              {% endif %}
+
+              {% if request.user.user_type == 'Librarian' %}
+                <div class="mb-3">
+                  <label for="phone" class="form-label">phone</label>
+                  <input type="number" class="form-control"  id="phone" name="phone" required />
+                </div>
+              {% elif request.user.user_type == 'Student' %}
+                <div class="mb-3">
+                  <label for="contact_number" class="form-label">contact_number</label>
+                  <input type="number" class="form-control"  id="contact_number" name="contact_number" required />
+                </div>
+              {% endif %}
+              {% if request.user.user_type == 'Librarian' %}
+                <div class="mb-3">
+                  <label for="address" class="form-label">address</label>
+                  <input type="text" class="form-control"  id="address" name="address" required />
+                </div>
+              {% elif request.user.user_type == 'Student' %}
+                <div class="mb-3">
+                  <label for="address" class="form-label">address</label>
+                  <input type="text" class="form-control"  id="address" name="address" required />
+                </div>
+              {% endif %}
+              {% if request.user.user_type == 'Librarian' %}
+                <div class="mb-3">
+                  <label for="profile" class="form-label">profile</label>
+                  <input type="file" class="form-control" id="profile" name="profile" required />
+                </div>
+              {% elif request.user.user_type == 'Student' %}
+                <div class="mb-3">
+                  <label for="profile" class="form-label">profile</label>
+                  <input type="file" class="form-control"  id="profile" name="profile" required />
+                </div>
+              {% endif %}
+
+
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

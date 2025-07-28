@@ -1,0 +1,29 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+  <h2>Book</h2>
+  <table class="table table-bordered table-hover text-center align-middle">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Quentity</th>
+        <th>Created at</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td>{{ bookData.title }}</td>
+
+          <td>{{ bookData.author }}</td>
+          <td>{{ bookData.isbn }}</td>
+          <td>{{ bookData.quantity }}</td>
+          <td>{{ bookData.created_at }}</td>
+
+     
+    </tbody>
+  </table>
+{% endblock %}
