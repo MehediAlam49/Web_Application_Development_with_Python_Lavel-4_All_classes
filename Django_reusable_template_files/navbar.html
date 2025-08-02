@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-custom">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'home' %}"><i class="bi bi-mortarboard-fill me-1"></i>EMS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'home' %}"><i class="bi bi-house-door me-1"></i>Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'addBooking' %}"><i class="bi bi-person-plus me-1"></i>Add Booking</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'myBooking' %}"><i class="bi bi-person me-1"></i>My Booking</a>
+        </li>
+      </ul>
+
+      <!-- Search -->
+      <form class="d-flex search-bar" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search student..." aria-label="Search" />
+        <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+
+      <!-- Logout -->
+      <ul class="navbar-nav ms-3">
+        <!-- Profile -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{request.user.profile_image.url}}" alt="Profile" class="rounded-circle me-2" width="32" height="32" />
+            <span class="fw-semibold d-none d-md-inline">{{request.user.username}}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li>
+              <a class="dropdown-item" href="{% url 'profile' %}"><i class="bi bi-person-circle me-1"></i> View Profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href=""><i class="bi bi-gear me-1"></i> Settings</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item text-danger" href="{% url 'logoutPage' %}"><i class="bi bi-box-arrow-right me-1"></i> Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
