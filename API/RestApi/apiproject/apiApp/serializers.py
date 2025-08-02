@@ -11,3 +11,8 @@ class studentSerializer(serializers.ModelSerializer):
         latest_roll = StudentModel.objects.order_by(-roll)
         student_data = StudentModel.objects.create(**validated_data)
         student_data.roll
+
+class TeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeacherModel
+        fields = '__all__'

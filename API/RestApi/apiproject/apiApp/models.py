@@ -11,3 +11,14 @@ class StudentModel(models.Model):
     register_date = models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self):
         return self.student_name
+
+
+
+class TeacherModel(models.Model):
+    teacher_name = models.CharField(max_length=100, null=True)
+    age = models.IntegerField(null=True)
+    address = models.CharField(max_length=100,null=True)
+    designation = models.CharField(max_length=50, null=True)
+    images = models.ImageField(upload_to='media/images',null=True)
+    def __str__(self):
+        return self.teacher_name
