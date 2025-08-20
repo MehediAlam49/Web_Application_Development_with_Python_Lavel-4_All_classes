@@ -1,0 +1,32 @@
+{% extends 'master.html' %}
+{% block content %}
+<h1>employee Table</h1>
+<a href="{% url 'createEmployee' %}">Go create employee</a>
+
+<table>
+  <tr>
+    <th>employee_name</th>
+    <th>email</th>
+    <th>department</th>
+    <th>Actions</th>
+  </tr>
+  {% for data in employee_data %}
+  <tr>
+    <td>{{data.employee_name}}</td>
+    <td>{{data.email}}</td>
+    <td>{{data.department}}</td>
+    <td>
+        <a href="{% url 'editEmployee' data.id %}">edit</a>
+        <a href="{% url 'deleteEmployee' data.id %}">delete</a>
+    </td>
+
+    
+  </tr>
+  {% endfor %}
+  
+</table>
+
+{% endblock content %}
+
+
+

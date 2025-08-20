@@ -1,0 +1,34 @@
+{% extends 'master.html' %}
+{% block content %}
+<h1>product Table</h1>
+<a href="{% url 'createProduct' %}">Go create product</a>
+
+<table>
+  <tr>
+    <th>product_name</th>
+    <th>price</th>
+    <th>quantity</th>
+    <th>created_at</th>
+    <th>Actions</th>
+  </tr>
+  {% for data in product_data %}
+  <tr>
+    <td>{{data.product_name}}</td>
+    <td>{{data.price}}</td>
+    <td>{{data.quantity}}</td>
+    <td>{{data.created_at}}</td>
+    <td>
+        <a href="{% url 'editProduct' data.id %}">edit</a>
+        <a href="{% url 'deleteProduct' data.id %}">delete</a>
+    </td>
+
+    
+  </tr>
+  {% endfor %}
+  
+</table>
+
+{% endblock content %}
+
+
+

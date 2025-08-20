@@ -1,0 +1,32 @@
+{% extends 'master.html' %}
+{% block content %}
+<h1>company Table</h1>
+<a href="{% url 'createCompany' %}">Go create company</a>
+
+<table>
+  <tr>
+    <th>company_name</th>
+    <th>location</th>
+    <th>contact</th>
+    <th>Actions</th>
+  </tr>
+  {% for data in company_data %}
+  <tr>
+    <td>{{data.company_name}}</td>
+    <td>{{data.location}}</td>
+    <td>{{data.contact}}</td>
+    <td>
+        <a href="{% url 'editCompany' data.id %}">edit</a>
+        <a href="{% url 'deleteCompany' data.id %}">delete</a>
+    </td>
+
+    
+  </tr>
+  {% endfor %}
+  
+</table>
+
+{% endblock content %}
+
+
+

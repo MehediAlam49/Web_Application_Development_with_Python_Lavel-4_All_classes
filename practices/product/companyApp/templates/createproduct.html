@@ -1,0 +1,21 @@
+{% extends 'master.html' %}
+
+{% block content %}
+    
+<h3>Using CSS to style an HTML Form</h3>
+<a href="{% url 'productList' %}">product list</a>
+
+<div>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
+{% endblock content %}
+    
+
+
+
+
