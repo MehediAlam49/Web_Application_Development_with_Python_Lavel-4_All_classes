@@ -31,25 +31,29 @@ div {
   background-color: #f2f2f2;
   padding: 20px;
 }
+h3{
+  text-align: center;
+}
 </style>
 <body>
 
-<h3>Using CSS to style an HTML Form</h3>
+<h3>Signup</h3>
 
 <div>
-  <form action="/action_page.php">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <label for="username">Userame</label>
+    <input type="text" id="username" name="username" placeholder="Your name..">
 
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Enter your email..">
 
-    <label for="country">Country</label>
-    <select id="country" name="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-    </select>
+    <label for="password">Password</label>
+    <input type="text" id="password" name="password" placeholder="Enter your password..">
+
+    <label for="confirm_password">confirm Password</label>
+    <input type="text" id="confirm_password" name="confirm_password" placeholder="Enter your confirm_password..">
+
   
     <input type="submit" value="Submit">
   </form>

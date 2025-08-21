@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from user_auth_app.models import *
 
 # Create your views here.
-def register(request):
+def registerPage(request):
     
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -36,4 +36,4 @@ def logoutPage(request):
     return redirect('loginPage')
 
 def home(request):
-    pass
+    return render(request, 'home.html')
