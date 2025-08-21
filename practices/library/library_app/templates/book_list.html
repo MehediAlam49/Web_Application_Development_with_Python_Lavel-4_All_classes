@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h1>Book List</h1>
+<a href="{% url 'create_book' %}">Create a Book</a>
+
+<table>
+  <tr>
+    <th>title</th>
+    <th>author</th>
+    <th>publication</th>
+    <th>created_at</th>
+    <th>Actions</th>
+  </tr>
+  {% for book in book_data %}
+  <tr>
+    <td>{{book.title}}</td>
+    <td>{{book.author}}</td>
+    <td>{{book.publication}}</td>
+    <td>{{book.created_at}}</td>
+    <td>
+        <a href="{% url 'edit_book' book.id %}">Edit</a>
+        <a href="{% url 'delete_book' book.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+</body>
+</html>
+
+
