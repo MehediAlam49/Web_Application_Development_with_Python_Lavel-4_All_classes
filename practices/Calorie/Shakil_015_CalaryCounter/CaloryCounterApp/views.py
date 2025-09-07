@@ -46,31 +46,48 @@ def dashboard(request):
     total_consumed_data = TotalConsumedModel.objects.all()
     
     current_user = request.user
-    gender = current_user.profile_user.Gender
-    weight = current_user.profile_user.Weight
-    height = current_user.profile_user.Height
-    age = current_user.profile_user.Age
+    profile = current_user.profile_user
+    
+    gender = profile.Gender
+    weight = profile.Weight
+    height = profile.Height
+    age = profile.Age
     
     today = date.today()
     
-    today_consumed_calorie = TotalConsumedModel.objects.get(user=current_user, Date=today)
-    
+    # Get today's calories if available
+    today_consumed_calorie = TotalConsumedModel.objects.filter(user=current_user, Date=today).first()
+    consumed = today_consumed_calorie.Total_calorie if today_consumed_calorie else 0
+
+    # Check for missing profile data
+    if None in [gender, weight, height, age]:
+        # You can show a warning message or redirect to profile update
+        context = {
+            'error': "Please complete your profile (Age, Gender, Height, Weight) to calculate BMR.",
+            'dailyconsumed_calorie_item': dailyconsumed_calorie_item,
+            'total_consumed_data': total_consumed_data,
+        }
+        return render(request, 'dashboard.html', context)
+
+    # Calculate BMR
     if gender == 'Male':
-        BMR = 66.47 + (13.75 * weight) + (5.003 * height)-(6.755 * age)
+        BMR = 66.47 + (13.75 * weight) + (5.003 * height) - (6.755 * age)
     else:
         BMR = 655.1 + (0.563 * weight) + (1.850 * height) - (4.676 * age)
-    BMR = round(BMR,2)
-    
-    remaining = BMR - today_consumed_calorie.Total_calorie
+
+    BMR = round(BMR, 2)
+    remaining = BMR - consumed
+
     context = {
-        'dailyconsumed_calorie_item':dailyconsumed_calorie_item,
-        'total_consumed_data':total_consumed_data,
+        'dailyconsumed_calorie_item': dailyconsumed_calorie_item,
+        'total_consumed_data': total_consumed_data,
         'BMR': BMR,
         'today_consumed_calorie': today_consumed_calorie,
         'remaining': remaining,
     }
-    
-    return render(request, 'dashboard.html',context)
+
+    return render(request, 'dashboard.html', context)
+
 
 def profile_view(request):
     
